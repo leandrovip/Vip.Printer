@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Vip.Printer.Demo")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Vip.Printer")]
+[assembly: AssemblyDescription("Biblioteca para impressões em mini-impressoras utilizando comandos Esc/Bema e Esc/Pos")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Vip.Printer.Demo")]
+[assembly: AssemblyCompany("VIP Soluções")]
+[assembly: AssemblyProduct("Vip.Printer")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("vip printer")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b9f0cac4-62ae-4a27-9824-c522c94050e4")]
+[assembly: Guid("3d1ca98c-1503-4d02-a20e-cccfd17006c4")]
 
 // Version information for an assembly consists of the following four values:
 //

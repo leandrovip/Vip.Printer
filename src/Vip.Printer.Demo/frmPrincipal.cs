@@ -6,10 +6,16 @@ namespace Vip.Printer.Demo
 {
     public partial class frmPrincipal : Form
     {
+        #region Construtores
+
         public frmPrincipal()
         {
             InitializeComponent();
         }
+
+        #endregion
+
+        #region Eventos
 
         private void btnTexto_Click(object sender, EventArgs e)
         {
@@ -35,5 +41,7 @@ namespace Vip.Printer.Demo
 
             printer.PrintDocument();
         }
+
+        #endregion
     }
 }
