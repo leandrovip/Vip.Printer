@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Vip.Printer.Helper
 {
-    public class RawPrinterHelper
+    internal class RawPrinterHelper
     {
-        // Structure and API declarions:
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public class DOCINFOA
         {
@@ -15,6 +14,8 @@ namespace Vip.Printer.Helper
             [MarshalAs(UnmanagedType.LPStr)] public string pOutputFile;
             [MarshalAs(UnmanagedType.LPStr)] public string pDataType;
         }
+
+        #region Declaration Dll
 
         [DllImport("winspool.Drv", EntryPoint = "OpenPrinterA", SetLastError = true, CharSet = CharSet.Ansi,
             ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
@@ -45,6 +46,10 @@ namespace Vip.Printer.Helper
         [DllImport("winspool.Drv", EntryPoint = "WritePrinter", SetLastError = true, ExactSpelling = true,
             CallingConvention = CallingConvention.StdCall)]
         public static extern bool WritePrinter(IntPtr hPrinter, IntPtr pBytes, int dwCount, out int dwWritten);
+
+        #endregion
+
+        #region Methods
 
         // SendBytesToPrinter()
         // When the function is given a printer name and an unmanaged array
@@ -151,5 +156,7 @@ namespace Vip.Printer.Helper
 
             return retval;
         }
+
+        #endregion
     }
 }

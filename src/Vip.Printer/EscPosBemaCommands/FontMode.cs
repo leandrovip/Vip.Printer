@@ -8,32 +8,55 @@ namespace Vip.Printer.EscPosBemaCommands
     {
         public byte[] Italic(string value)
         {
-            var data = new byte[] {27, '4'.ToByte()}
+            return Italic(PrinterModeState.On)
                 .AddBytes(value)
-                .AddBytes(new byte[] {27, '5'.ToByte()})
+                .AddBytes(Italic(PrinterModeState.Off))
                 .AddLF();
+        }
 
-            return data;
+        public byte[] Italic(PrinterModeState state)
+        {
+            return state == PrinterModeState.On
+                ? new byte[] {27, '4'.ToByte()}
+                : new byte[] {27, '5'.ToByte()};
         }
 
         public byte[] Bold(string value)
         {
-            var data = new byte[] {27, 'E'.ToByte()}
+            return Bold(PrinterModeState.On)
                 .AddBytes(value)
-                .AddBytes(new byte[] {27, 'F'.ToByte()})
+                .AddBytes(Bold(PrinterModeState.Off))
                 .AddLF();
+        }
 
-            return data;
+        public byte[] Bold(PrinterModeState state)
+        {
+            return state == PrinterModeState.On
+                ? new byte[] {27, 'E'.ToByte()}
+                : new byte[] {27, 'F'.ToByte()};
         }
 
         public byte[] Underline(string value)
         {
-            var data = new byte[] {27, '-'.ToByte(), 1}
+            return Underline(PrinterModeState.On)
                 .AddBytes(value)
-                .AddBytes(new byte[] {27, '-'.ToByte(), 0})
+                .AddBytes(Underline(PrinterModeState.Off))
                 .AddLF();
+        }
 
-            return data;
+        public byte[] Underline(PrinterModeState state)
+        {
+            return state == PrinterModeState.On
+                ? new byte[] {27, '-'.ToByte(), 1}
+                : new byte[] {27, '-'.ToByte(), 0};
+        }
+
+        public byte[] Expanded(string value)
+        {
+            return Expanded(PrinterModeState.On)
+                .AddBytes(value)
+                .AddBytes(Expanded(PrinterModeState.Off))
+                .AddLF();
         }
 
         public byte[] Expanded(PrinterModeState state)
@@ -43,6 +66,14 @@ namespace Vip.Printer.EscPosBemaCommands
                 27, 'W'.ToByte(),
                 state == PrinterModeState.On ? '1'.ToByte() : '0'.ToByte()
             };
+        }
+
+        public byte[] Condensed(string value)
+        {
+            return Condensed(PrinterModeState.On)
+                .AddBytes(value)
+                .AddBytes(Condensed(PrinterModeState.Off))
+                .AddLF();
         }
 
         public byte[] Condensed(PrinterModeState state)
