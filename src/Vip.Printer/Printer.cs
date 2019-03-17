@@ -1,4 +1,33 @@
-﻿using System.Collections.Generic;
+﻿// ***********************************************************************
+// Assembly         : Vip.Printer
+// Author           : Leandro Ferreira
+// Created          : 16-03-2019
+//
+// ***********************************************************************
+// <copyright file="Printer.cs" company="VIP Soluções">
+//		        		   The MIT License (MIT)
+//	     		    Copyright (c) 2019 VIP Soluções
+//
+//	 Permission is hereby granted, free of charge, to any person obtaining
+// a copy of this software and associated documentation files (the "Software"),
+// to deal in the Software without restriction, including without limitation
+// the rights to use, copy, modify, merge, publish, distribute, sublicense,
+// and/or sell copies of the Software, and to permit persons to whom the
+// Software is furnished to do so, subject to the following conditions:
+//	 The above copyright notice and this permission notice shall be
+// included in all copies or substantial portions of the Software.
+//	 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+// ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+// DEALINGS IN THE SOFTWARE.
+// </copyright>
+// <summary></summary>
+// ***********************************************************************
+
+using System.Collections.Generic;
 using System.Text;
 using Vip.Printer.Enums;
 using Vip.Printer.EscPosBemaCommands;
@@ -90,9 +119,16 @@ namespace Vip.Printer
             Append(_command.Separator());
         }
 
+        #region FontMode
+
         public void ItalicMode(string value)
         {
             Append(_command.FontMode.Italic(value));
+        }
+
+        public void ItalicMode(PrinterModeState state)
+        {
+            Append(_command.FontMode.Italic(state));
         }
 
         public void BoldMode(string value)
@@ -100,9 +136,24 @@ namespace Vip.Printer
             Append(_command.FontMode.Bold(value));
         }
 
+        public void BoldMode(PrinterModeState state)
+        {
+            Append(_command.FontMode.Bold(state));
+        }
+
         public void UnderlineMode(string value)
         {
             Append(_command.FontMode.Underline(value));
+        }
+
+        public void UnderlineMode(PrinterModeState state)
+        {
+            Append(_command.FontMode.Underline(state));
+        }
+
+        public void Expanded(string value)
+        {
+            Append(_command.FontMode.Expanded(value));
         }
 
         public void ExpandedMode(PrinterModeState state)
@@ -110,10 +161,17 @@ namespace Vip.Printer
             Append(_command.FontMode.Expanded(state));
         }
 
+        public void CondensedMode(string value)
+        {
+            Append(_command.FontMode.Condensed(PrinterModeState.Off));
+        }
+
         public void CondensedMode(PrinterModeState state)
         {
             Append(_command.FontMode.Condensed(state));
         }
+
+        #endregion
 
         #endregion
     }

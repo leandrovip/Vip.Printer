@@ -2,7 +2,7 @@
 
 namespace Vip.Printer.Interfaces.Printer
 {
-    public interface IPrinter
+    internal interface IPrinter
     {
         void PrintDocument();
         void Append(string value);
@@ -10,11 +10,25 @@ namespace Vip.Printer.Interfaces.Printer
         void NewLine();
         void NewLines(int lines);
 
+        #region Commands
+
         void Separator();
+
+        #region FontMode
+
         void ItalicMode(string value);
+        void ItalicMode(PrinterModeState state);
         void BoldMode(string value);
+        void BoldMode(PrinterModeState state);
         void UnderlineMode(string value);
+        void UnderlineMode(PrinterModeState state);
+        void Expanded(string value);
         void ExpandedMode(PrinterModeState state);
+        void CondensedMode(string value);
         void CondensedMode(PrinterModeState state);
+
+        #endregion
+
+        #endregion
     }
 }
