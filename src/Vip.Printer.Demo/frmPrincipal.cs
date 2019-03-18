@@ -71,6 +71,31 @@ namespace Vip.Printer.Demo
 			Application.Exit();
 		}
 
+		private void btnQrCode_Click(object sender, EventArgs e)
+		{
+			var stringqrcode =
+				"35190361099008000141599000022490004885145710|20190315181929|2479.35||K+VRwUKRomWZZcJhaeuJMIWxRb5QKP6Sh6BLzHZdmNdhPOvxo5Xx4oIYqkfA5sB6z4KzBepBLgDrYkeOCzjwVGWhvLA5C72eQzk9emvV6EIk6iXa9XU/HesRJAqqiSqjvvOvhR9orD0tTUj3DjwoZpn8vrSSK1v1nHxJZBah7r5e3FG8P93X47QgHJZXGRR7BSNA8CQ4N/hgEMqXbOCn/4zj0E6y5Xg/JcI09xC6vX+5SmILY2e1zEBIirxKsWpZN/DkXt/su79esaQFBJSgfCerok4kLK/vE54CMjJ//U5bhLRm/ocHuEJbg1Rvf36kpwIXEnPV/zG/luJita36qQ==";
+
+			var printer = new Printer("USB", PrinterType.Bematech);
+			printer.AlignCenter();
+			printer.BoldMode("Teste de QRCode");
+			printer.Separator();
+			printer.Append("QrCode 1");
+			printer.QrCode(stringqrcode);
+			printer.NewLine();
+			printer.Append("QrCode 2");
+			printer.QrCode(stringqrcode, QrCodeSize.Size1);
+			printer.NewLine();
+			printer.Append("QrCode 3");
+			printer.QrCode(stringqrcode, QrCodeSize.Size2);
+			printer.NewLine();
+			printer.BoldMode("Fim de Teste");
+			printer.AlignLeft();
+			printer.PartialPaperCut();
+
+			printer.PrintDocument();
+		}
+
 		#endregion
 	}
 }

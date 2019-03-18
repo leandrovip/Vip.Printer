@@ -44,12 +44,14 @@
     <Compile Include="Enums\Justifications.cs" />
     <Compile Include="Enums\PrinterModeState.cs" />
     <Compile Include="Enums\PrinterType.cs" />
+    <Compile Include="Enums\QrCodeSize.cs" />
     <Compile Include="EscBemaCommands\Alignment.cs" />
     <Compile Include="EscBemaCommands\Drawer.cs" />
     <Compile Include="EscBemaCommands\EscBema.cs" />
     <Compile Include="EscBemaCommands\FontMode.cs" />
     <Compile Include="EscBemaCommands\FontWidth.cs" />
     <Compile Include="EscBemaCommands\PaperCut.cs" />
+    <Compile Include="EscBemaCommands\QrCode.cs" />
     <Compile Include="Extensions\PrinterExtensions.cs" />
     <Compile Include="Interfaces\Command\IAlignment.cs" />
     <Compile Include="Interfaces\Command\IDrawer.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="Interfaces\Command\IFontMode.cs" />
     <Compile Include="Interfaces\Command\IPaperCut.cs" />
     <Compile Include="Interfaces\Command\IPrintCommand.cs" />
+    <Compile Include="Interfaces\Command\IQrCode.cs" />
     <Compile Include="Interfaces\Printer\IPrinter.cs" />
     <Compile Include="Printer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

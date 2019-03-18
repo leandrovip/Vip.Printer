@@ -234,6 +234,20 @@ namespace Vip.Printer
 
 		#endregion
 
+		#region QrCode
+
+		public void QrCode(string qrData)
+		{
+			Append(_command.QrCode.Print(qrData));
+		}
+
+		public void QrCode(string qrData, QrCodeSize qrCodeSize)
+		{
+			Append(_command.QrCode.Print(qrData, qrCodeSize));
+		}
+
+		#endregion
+
 		#endregion
 	}
 }

@@ -58,6 +58,13 @@ namespace Vip.Printer.Interfaces.Printer
 
 		#endregion
 
+		#region QrCode
+
+		void QrCode(string qrData);
+		void QrCode(string qrData, QrCodeSize qrCodeSize);
+
+		#endregion
+
 		#endregion
 	}
 }
