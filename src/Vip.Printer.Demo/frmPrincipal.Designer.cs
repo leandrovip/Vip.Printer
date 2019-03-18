@@ -32,6 +32,8 @@
 			this.btnGaveta = new System.Windows.Forms.Button();
 			this.btnSair = new System.Windows.Forms.Button();
 			this.btnQrCode = new System.Windows.Forms.Button();
+			this.btnCodigoDeBarras = new System.Windows.Forms.Button();
+			this.btnCodigoEan13 = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnImprimirTeste
@@ -74,10 +76,32 @@
 			this.btnQrCode.UseVisualStyleBackColor = true;
 			this.btnQrCode.Click += new System.EventHandler(this.btnQrCode_Click);
 			// 
+			// btnCodigoDeBarras
+			// 
+			this.btnCodigoDeBarras.Location = new System.Drawing.Point(152, 62);
+			this.btnCodigoDeBarras.Name = "btnCodigoDeBarras";
+			this.btnCodigoDeBarras.Size = new System.Drawing.Size(133, 44);
+			this.btnCodigoDeBarras.TabIndex = 2;
+			this.btnCodigoDeBarras.Text = "Imprimir Código de Barras";
+			this.btnCodigoDeBarras.UseVisualStyleBackColor = true;
+			this.btnCodigoDeBarras.Click += new System.EventHandler(this.btnCodigoDeBarras_Click);
+			// 
+			// btnCodigoEan13
+			// 
+			this.btnCodigoEan13.Location = new System.Drawing.Point(12, 112);
+			this.btnCodigoEan13.Name = "btnCodigoEan13";
+			this.btnCodigoEan13.Size = new System.Drawing.Size(133, 44);
+			this.btnCodigoEan13.TabIndex = 3;
+			this.btnCodigoEan13.Text = "Imprimir Código de Barras EAN13";
+			this.btnCodigoEan13.UseVisualStyleBackColor = true;
+			this.btnCodigoEan13.Click += new System.EventHandler(this.btnCodigoEan13_Click);
+			// 
 			// frmPrincipal
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(297, 308);
+			this.Controls.Add(this.btnCodigoEan13);
+			this.Controls.Add(this.btnCodigoDeBarras);
 			this.Controls.Add(this.btnQrCode);
 			this.Controls.Add(this.btnSair);
 			this.Controls.Add(this.btnGaveta);
@@ -97,5 +121,7 @@
 		private System.Windows.Forms.Button btnGaveta;
 		private System.Windows.Forms.Button btnSair;
 		private System.Windows.Forms.Button btnQrCode;
+		private System.Windows.Forms.Button btnCodigoDeBarras;
+		private System.Windows.Forms.Button btnCodigoEan13;
 	}
 }

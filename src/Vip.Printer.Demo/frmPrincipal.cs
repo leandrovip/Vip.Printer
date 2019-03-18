@@ -96,6 +96,37 @@ namespace Vip.Printer.Demo
 			printer.PrintDocument();
 		}
 
+		private void btnCodigoDeBarras_Click(object sender, EventArgs e)
+		{
+			var printer = new Printer("USB", PrinterType.Bematech);
+
+			printer.Append("Teste de Código de Barras");
+			printer.Separator();
+			printer.Append("Code 128");
+			printer.Code128("3519036109900800014159");
+			printer.NewLine();
+			printer.Append("Code 3 9");
+			printer.Code39("TESTE");
+			printer.NewLine();
+			printer.Append("Fim de Teste");
+			printer.PartialPaperCut();
+
+			printer.PrintDocument();
+		}
+
+		private void btnCodigoEan13_Click(object sender, EventArgs e)
+		{
+			var printer = new Printer("USB", PrinterType.Bematech);
+
+			printer.Append("EAN 13");
+			printer.Ean13("7898173500051");
+			printer.NewLine();
+			printer.Append("Fim de Teste");
+			printer.PartialPaperCut();
+
+			printer.PrintDocument();
+		}
+
 		#endregion
 	}
 }
