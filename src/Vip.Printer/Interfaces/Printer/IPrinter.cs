@@ -65,6 +65,14 @@ namespace Vip.Printer.Interfaces.Printer
 
 		#endregion
 
+		#region BarCode
+
+		void Code128(string code);
+		void Code39(string code);
+		void Ean13(string code);
+
+		#endregion
+
 		#endregion
 	}
 }

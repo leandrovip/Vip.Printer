@@ -10,6 +10,7 @@
         IPaperCut PaperCut { get; set; }
         IDrawer Drawer { get; set; }
         IQrCode QrCode { get; set; }
+        IBarCode BarCode { get; set; }
         byte[] Separator();
     }
 }

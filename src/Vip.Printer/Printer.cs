@@ -248,6 +248,25 @@ namespace Vip.Printer
 
 		#endregion
 
+		#region BarCode
+
+		public void Code128(string code)
+		{
+			Append(_command.BarCode.Code128(code));
+		}
+
+		public void Code39(string code)
+		{
+			Append(_command.BarCode.Code39(code));
+		}
+
+		public void Ean13(string code)
+		{
+			Append(_command.BarCode.Ean13(code));
+		}
+
+		#endregion
+
 		#endregion
 	}
 }

@@ -13,6 +13,7 @@ namespace Vip.Printer.EscBemaCommands
 		public IPaperCut PaperCut { get; set; }
 		public IDrawer Drawer { get; set; }
 		public IQrCode QrCode { get; set; }
+		public IBarCode BarCode { get; set; }
 		public int ColsNomal => 50;
 		public int ColsCondensed => 67;
 
@@ -28,6 +29,7 @@ namespace Vip.Printer.EscBemaCommands
 			PaperCut = new PaperCut();
 			Drawer = new Drawer();
 			QrCode = new QrCode();
+			BarCode = new BarCode();
 		}
 
 		#endregion
