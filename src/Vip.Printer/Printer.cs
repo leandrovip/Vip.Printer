@@ -225,6 +225,15 @@ namespace Vip.Printer
 
 		#endregion
 
+		#region Drawer
+
+		public void OpenDrawer()
+		{
+			Append(_command.Drawer.Open());
+		}
+
+		#endregion
+
 		#endregion
 	}
 }

@@ -59,6 +59,18 @@ namespace Vip.Printer.Demo
 			printer.PrintDocument();
 		}
 
+		private void btnGaveta_Click(object sender, EventArgs e)
+		{
+			var printer = new Printer("USB", PrinterType.Bematech);
+			printer.OpenDrawer();
+			printer.PrintDocument();
+		}
+
+		private void btnSair_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
+
 		#endregion
 	}
 }
