@@ -192,6 +192,25 @@ namespace Vip.Printer
 
 		#endregion
 
+		#region Alignment
+
+		public void AlignLeft()
+		{
+			Append(_command.Alignment.Left());
+		}
+
+		public void AlignRight()
+		{
+			Append(_command.Alignment.Right());
+		}
+
+		public void AlignCenter()
+		{
+			Append(_command.Alignment.Center());
+		}
+
+		#endregion
+
 		#endregion
 	}
 }

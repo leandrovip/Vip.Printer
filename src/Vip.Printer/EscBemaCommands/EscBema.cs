@@ -9,6 +9,7 @@ namespace Vip.Printer.EscBemaCommands
 
 		public IFontMode FontMode { get; set; }
 		public IFontWidth FontWidth { get; set; }
+		public IAlignment Alignment { get; set; }
 		public int ColsNomal => 50;
 		public int ColsCondensed => 67;
 
@@ -20,6 +21,7 @@ namespace Vip.Printer.EscBemaCommands
 		{
 			FontMode = new FontMode();
 			FontWidth = new FontWidth();
+			Alignment = new Alignment();
 		}
 
 		#endregion
