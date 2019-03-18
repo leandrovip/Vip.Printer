@@ -45,6 +45,13 @@ namespace Vip.Printer.Interfaces.Printer
 
 		#endregion
 
+		#region PaperCut
+
+		void FullPaperCut();
+		void PartialPaperCut();
+
+		#endregion
+
 		#endregion
 	}
 }

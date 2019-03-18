@@ -211,6 +211,20 @@ namespace Vip.Printer
 
 		#endregion
 
+		#region PaperCut
+
+		public void FullPaperCut()
+		{
+			Append(_command.PaperCut.Full());
+		}
+
+		public void PartialPaperCut()
+		{
+			Append(_command.PaperCut.Partial());
+		}
+
+		#endregion
+
 		#endregion
 	}
 }

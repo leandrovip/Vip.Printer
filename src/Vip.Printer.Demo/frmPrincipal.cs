@@ -54,6 +54,7 @@ namespace Vip.Printer.Demo
 			printer.NewLine();
 			printer.Append("Final de Teste :)");
 			printer.Separator();
+			printer.PartialPaperCut();
 
 			printer.PrintDocument();
 		}

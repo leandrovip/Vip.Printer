@@ -7,6 +7,7 @@
         IFontMode FontMode { get; set; }
         IFontWidth FontWidth { get; set; }
         IAlignment Alignment { get; set; }
+        IPaperCut PaperCut { get; set; }
         byte[] Separator();
     }
 }
