@@ -52,6 +52,12 @@ namespace Vip.Printer.Interfaces.Printer
 
 		#endregion
 
+		#region Drawer
+
+		void OpenDrawer();
+
+		#endregion
+
 		#endregion
 	}
 }

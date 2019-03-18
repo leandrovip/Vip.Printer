@@ -11,6 +11,7 @@ namespace Vip.Printer.EscBemaCommands
 		public IFontWidth FontWidth { get; set; }
 		public IAlignment Alignment { get; set; }
 		public IPaperCut PaperCut { get; set; }
+		public IDrawer Drawer { get; set; }
 		public int ColsNomal => 50;
 		public int ColsCondensed => 67;
 
@@ -24,6 +25,7 @@ namespace Vip.Printer.EscBemaCommands
 			FontWidth = new FontWidth();
 			Alignment = new Alignment();
 			PaperCut = new PaperCut();
+			Drawer  = new Drawer();
 		}
 
 		#endregion

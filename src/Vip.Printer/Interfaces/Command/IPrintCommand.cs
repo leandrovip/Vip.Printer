@@ -8,6 +8,7 @@
         IFontWidth FontWidth { get; set; }
         IAlignment Alignment { get; set; }
         IPaperCut PaperCut { get; set; }
+        IDrawer Drawer { get; set; }
         byte[] Separator();
     }
 }

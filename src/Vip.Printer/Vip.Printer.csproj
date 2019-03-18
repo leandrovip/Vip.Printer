@@ -45,12 +45,14 @@
     <Compile Include="Enums\PrinterModeState.cs" />
     <Compile Include="Enums\PrinterType.cs" />
     <Compile Include="EscBemaCommands\Alignment.cs" />
+    <Compile Include="EscBemaCommands\Drawer.cs" />
     <Compile Include="EscBemaCommands\EscBema.cs" />
     <Compile Include="EscBemaCommands\FontMode.cs" />
     <Compile Include="EscBemaCommands\FontWidth.cs" />
     <Compile Include="EscBemaCommands\PaperCut.cs" />
     <Compile Include="Extensions\PrinterExtensions.cs" />
     <Compile Include="Interfaces\Command\IAlignment.cs" />
+    <Compile Include="Interfaces\Command\IDrawer.cs" />
     <Compile Include="Interfaces\Command\IFontWidth.cs" />
     <Compile Include="Interfaces\Command\IFontMode.cs" />
     <Compile Include="Interfaces\Command\IPaperCut.cs" />
