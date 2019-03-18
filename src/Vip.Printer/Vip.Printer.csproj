@@ -43,11 +43,11 @@
   <ItemGroup>
     <Compile Include="Enums\PrinterModeState.cs" />
     <Compile Include="Enums\PrinterType.cs" />
-    <Compile Include="EscPosBemaCommands\CharSize.cs" />
-    <Compile Include="EscPosBemaCommands\EscBema.cs" />
-    <Compile Include="EscPosBemaCommands\FontMode.cs" />
+    <Compile Include="EscBemaCommands\EscBema.cs" />
+    <Compile Include="EscBemaCommands\FontMode.cs" />
+    <Compile Include="EscBemaCommands\FontWidth.cs" />
     <Compile Include="Extensions\PrinterExtensions.cs" />
-    <Compile Include="Interfaces\Command\ICharSize.cs" />
+    <Compile Include="Interfaces\Command\IFontWidth.cs" />
     <Compile Include="Interfaces\Command\IFontMode.cs" />
     <Compile Include="Interfaces\Command\IPrintCommand.cs" />
     <Compile Include="Interfaces\Printer\IPrinter.cs" />
@@ -56,7 +56,7 @@
     <Compile Include="Helper\RawPrinterHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EscPosEpsonCommands\" />
+    <Folder Include="EscPosCommands\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

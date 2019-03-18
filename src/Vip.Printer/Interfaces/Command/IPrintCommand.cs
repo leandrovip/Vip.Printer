@@ -5,7 +5,7 @@
         int ColsNomal { get; }
         int ColsCondensed { get; }
         IFontMode FontMode { get; set; }
-        ICharSize CharSize { get; set; }
+        IFontWidth FontWidth { get; set; }
         byte[] Separator();
     }
 }
