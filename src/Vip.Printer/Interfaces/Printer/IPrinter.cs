@@ -37,6 +37,14 @@ namespace Vip.Printer.Interfaces.Printer
 
 		#endregion
 
+		#region Alignment
+
+		void AlignLeft();
+		void AlignRight();
+		void AlignCenter();
+
+		#endregion
+
 		#endregion
 	}
 }

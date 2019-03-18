@@ -42,6 +42,14 @@ namespace Vip.Printer.Demo
 			printer.Append("Largura da Fonte 3");
 			printer.NormalWidth();
 			printer.Append("Largura normal");
+			printer.Separator();
+
+			printer.AlignRight();
+			printer.Append("Texto alinhado à direita");
+			printer.AlignCenter();
+			printer.Append("Texto alinhado ao centro");
+			printer.AlignLeft();
+			printer.Append("Texto alinhado à esquerda");
 
 			printer.NewLine();
 			printer.Append("Final de Teste :)");
