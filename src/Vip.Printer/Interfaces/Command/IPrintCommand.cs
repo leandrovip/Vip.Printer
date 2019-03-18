@@ -9,6 +9,7 @@
         IAlignment Alignment { get; set; }
         IPaperCut PaperCut { get; set; }
         IDrawer Drawer { get; set; }
+        IQrCode QrCode { get; set; }
         byte[] Separator();
     }
 }
