@@ -1,4 +1,7 @@
-# Vip.Printer
+[![Nuget count](https://img.shields.io/nuget/v/Vip.Printer.svg)](https://www.nuget.org/packages/Vip.Printer/)
+
+# Vip.Printer  
+
 Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc/Bema e Esc/Pos, possibilitando utilizar diversas impressoras e de diversas marcas como Bematech, Elgin, Epson, Sweda, etc.
 
 ### Funcionalidades
