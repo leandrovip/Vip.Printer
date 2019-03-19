@@ -51,6 +51,10 @@ namespace Vip.Printer.Demo
 			printer.AlignLeft();
 			printer.Append("Texto alinhado à esquerda");
 
+			printer.CondensedMode("TEXTO CONDENSADO 1");
+			printer.CondensedMode("TEXTO CONDENSADO 2");
+			printer.Append("Outro Texto");
+
 			printer.NewLine();
 			printer.Append("Final de Teste :)");
 			printer.Separator();

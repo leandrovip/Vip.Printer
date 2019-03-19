@@ -78,14 +78,7 @@ namespace Vip.Printer
 
 		public void Append(string value)
 		{
-			if (string.IsNullOrEmpty(value))
-				return;
-
-			var list = new List<byte>();
-			if (_buffer != null) list.AddRange(_buffer);
-			list.AddRange(Encoding.GetEncoding(850).GetBytes(value + "\n"));
-
-			_buffer = list.ToArray();
+			AppendString(value, true);
 		}
 
 		public void Append(byte[] value)
@@ -99,6 +92,11 @@ namespace Vip.Printer
 			_buffer = list.ToArray();
 		}
 
+		public void AppendWithoutLf(string value)
+		{
+			AppendString(value, false);
+		}
+
 		public void NewLine()
 		{
 			Append("\n");
@@ -108,6 +106,20 @@ namespace Vip.Printer
 		{
 			for (var i = 1; i < lines; i++)
 				NewLine();
+		}
+
+		private void AppendString(string value, bool useLf)
+		{
+			if (string.IsNullOrEmpty(value))
+				return;
+
+			if (useLf) value += "\n";
+
+			var list = new List<byte>();
+			if (_buffer != null) list.AddRange(_buffer);
+			list.AddRange(Encoding.GetEncoding(850).GetBytes(value));
+
+			_buffer = list.ToArray();
 		}
 
 		#endregion
@@ -163,7 +175,7 @@ namespace Vip.Printer
 
 		public void CondensedMode(string value)
 		{
-			Append(_command.FontMode.Condensed(PrinterModeState.Off));
+			Append(_command.FontMode.Condensed(value));
 		}
 
 		public void CondensedMode(PrinterModeState state)

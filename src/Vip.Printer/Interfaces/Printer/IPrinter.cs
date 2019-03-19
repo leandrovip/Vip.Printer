@@ -7,6 +7,7 @@ namespace Vip.Printer.Interfaces.Printer
 		void PrintDocument();
 		void Append(string value);
 		void Append(byte[] value);
+		void AppendWithoutLf(string value);
 		void NewLine();
 		void NewLines(int lines);
 
