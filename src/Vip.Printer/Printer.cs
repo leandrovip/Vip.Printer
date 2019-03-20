@@ -99,7 +99,7 @@ namespace Vip.Printer
 
 		public void NewLine()
 		{
-			Append("\n");
+			Append("\r");
 		}
 
 		public void NewLines(int lines)
