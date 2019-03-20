@@ -2,78 +2,81 @@
 
 namespace Vip.Printer.Interfaces.Printer
 {
-	internal interface IPrinter
-	{
-		void PrintDocument();
-		void Append(string value);
-		void Append(byte[] value);
-		void AppendWithoutLf(string value);
-		void NewLine();
-		void NewLines(int lines);
+    internal interface IPrinter
+    {
+        int ColsNomal { get; }
+        int ColsCondensed { get; }
+        int ColsExpanded { get; }
+        void PrintDocument();
+        void Append(string value);
+        void Append(byte[] value);
+        void AppendWithoutLf(string value);
+        void NewLine();
+        void NewLines(int lines);
 
-		#region Commands
+        #region Commands
 
-		void Separator();
+        void Separator();
 
-		#region FontMode
+        #region FontMode
 
-		void ItalicMode(string value);
-		void ItalicMode(PrinterModeState state);
-		void BoldMode(string value);
-		void BoldMode(PrinterModeState state);
-		void UnderlineMode(string value);
-		void UnderlineMode(PrinterModeState state);
-		void ExpandedMode(string value);
-		void ExpandedMode(PrinterModeState state);
-		void CondensedMode(string value);
-		void CondensedMode(PrinterModeState state);
+        void ItalicMode(string value);
+        void ItalicMode(PrinterModeState state);
+        void BoldMode(string value);
+        void BoldMode(PrinterModeState state);
+        void UnderlineMode(string value);
+        void UnderlineMode(PrinterModeState state);
+        void ExpandedMode(string value);
+        void ExpandedMode(PrinterModeState state);
+        void CondensedMode(string value);
+        void CondensedMode(PrinterModeState state);
 
-		#endregion
+        #endregion
 
-		#region FontWidth
+        #region FontWidth
 
-		void NormalWidth();
-		void DoubleWidth2();
-		void DoubleWidth3();
+        void NormalWidth();
+        void DoubleWidth2();
+        void DoubleWidth3();
 
-		#endregion
+        #endregion
 
-		#region Alignment
+        #region Alignment
 
-		void AlignLeft();
-		void AlignRight();
-		void AlignCenter();
+        void AlignLeft();
+        void AlignRight();
+        void AlignCenter();
 
-		#endregion
+        #endregion
 
-		#region PaperCut
+        #region PaperCut
 
-		void FullPaperCut();
-		void PartialPaperCut();
+        void FullPaperCut();
+        void PartialPaperCut();
 
-		#endregion
+        #endregion
 
-		#region Drawer
+        #region Drawer
 
-		void OpenDrawer();
+        void OpenDrawer();
 
-		#endregion
+        #endregion
 
-		#region QrCode
+        #region QrCode
 
-		void QrCode(string qrData);
-		void QrCode(string qrData, QrCodeSize qrCodeSize);
+        void QrCode(string qrData);
+        void QrCode(string qrData, QrCodeSize qrCodeSize);
 
-		#endregion
+        #endregion
 
-		#region BarCode
+        #region BarCode
 
-		void Code128(string code);
-		void Code39(string code);
-		void Ean13(string code);
+        void Code128(string code);
+        void Code39(string code);
+        void Ean13(string code);
 
-		#endregion
+        #endregion
 
-		#endregion
-	}
+        #endregion
+    }
 }

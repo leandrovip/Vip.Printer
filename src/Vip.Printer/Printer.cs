@@ -37,248 +37,252 @@ using Vip.Printer.Interfaces.Printer;
 
 namespace Vip.Printer
 {
-	public class Printer : IPrinter
-	{
-		#region Properties
+    public class Printer : IPrinter
+    {
+        #region Properties
 
-		private byte[] _buffer;
-		private readonly string _printerName;
-		private readonly IPrintCommand _command;
+        private byte[] _buffer;
+        private readonly string _printerName;
+        private readonly IPrintCommand _command;
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		public Printer(string printerName, PrinterType type)
-		{
-			_printerName = string.IsNullOrEmpty(printerName) ? "temp.prn" : printerName.Trim();
+        public Printer(string printerName, PrinterType type)
+        {
+            _printerName = string.IsNullOrEmpty(printerName) ? "temp.prn" : printerName.Trim();
 
-			switch (type)
-			{
-				case PrinterType.Epson:
-					//Command = new EscPosEpson();
-					break;
-				case PrinterType.Bematech:
-					_command = new EscBema();
-					break;
-			}
-		}
+            switch (type)
+            {
+                case PrinterType.Epson:
+                    //Command = new EscPosEpson();
+                    break;
+                case PrinterType.Bematech:
+                    _command = new EscBema();
+                    break;
+            }
+        }
 
-		#endregion
+        #endregion
 
-		#region Methods
+        #region Methods
 
-		public void PrintDocument()
-		{
-			if (_buffer == null)
-				return;
+        public int ColsNomal => _command.ColsNomal;
+        public int ColsCondensed => _command.ColsCondensed;
+        public int ColsExpanded => _command.ColsExpanded;
 
-			RawPrinterHelper.SendBytesToPrinter(_printerName, _buffer);
-		}
+        public void PrintDocument()
+        {
+            if (_buffer == null)
+                return;
 
-		public void Append(string value)
-		{
-			AppendString(value, true);
-		}
+            RawPrinterHelper.SendBytesToPrinter(_printerName, _buffer);
+        }
 
-		public void Append(byte[] value)
-		{
-			if (value == null)
-				return;
+        public void Append(string value)
+        {
+            AppendString(value, true);
+        }
 
-			var list = new List<byte>();
-			if (_buffer != null) list.AddRange(_buffer);
-			list.AddRange(value);
-			_buffer = list.ToArray();
-		}
+        public void Append(byte[] value)
+        {
+            if (value == null)
+                return;
 
-		public void AppendWithoutLf(string value)
-		{
-			AppendString(value, false);
-		}
+            var list = new List<byte>();
+            if (_buffer != null) list.AddRange(_buffer);
+            list.AddRange(value);
+            _buffer = list.ToArray();
+        }
 
-		public void NewLine()
-		{
-			Append("\r");
-		}
+        public void AppendWithoutLf(string value)
+        {
+            AppendString(value, false);
+        }
 
-		public void NewLines(int lines)
-		{
-			for (var i = 1; i < lines; i++)
-				NewLine();
-		}
+        public void NewLine()
+        {
+            Append("\r");
+        }
 
-		private void AppendString(string value, bool useLf)
-		{
-			if (string.IsNullOrEmpty(value))
-				return;
+        public void NewLines(int lines)
+        {
+            for (var i = 1; i < lines; i++)
+                NewLine();
+        }
 
-			if (useLf) value += "\n";
+        private void AppendString(string value, bool useLf)
+        {
+            if (string.IsNullOrEmpty(value))
+                return;
 
-			var list = new List<byte>();
-			if (_buffer != null) list.AddRange(_buffer);
-			list.AddRange(Encoding.GetEncoding(850).GetBytes(value));
+            if (useLf) value += "\n";
 
-			_buffer = list.ToArray();
-		}
+            var list = new List<byte>();
+            if (_buffer != null) list.AddRange(_buffer);
+            list.AddRange(Encoding.GetEncoding(850).GetBytes(value));
 
-		#endregion
+            _buffer = list.ToArray();
+        }
 
-		#region Commands
+        #endregion
 
-		public void Separator()
-		{
-			Append(_command.Separator());
-		}
+        #region Commands
 
-		#region FontMode
+        public void Separator()
+        {
+            Append(_command.Separator());
+        }
 
-		public void ItalicMode(string value)
-		{
-			Append(_command.FontMode.Italic(value));
-		}
+        #region FontMode
 
-		public void ItalicMode(PrinterModeState state)
-		{
-			Append(_command.FontMode.Italic(state));
-		}
+        public void ItalicMode(string value)
+        {
+            Append(_command.FontMode.Italic(value));
+        }
 
-		public void BoldMode(string value)
-		{
-			Append(_command.FontMode.Bold(value));
-		}
+        public void ItalicMode(PrinterModeState state)
+        {
+            Append(_command.FontMode.Italic(state));
+        }
 
-		public void BoldMode(PrinterModeState state)
-		{
-			Append(_command.FontMode.Bold(state));
-		}
+        public void BoldMode(string value)
+        {
+            Append(_command.FontMode.Bold(value));
+        }
 
-		public void UnderlineMode(string value)
-		{
-			Append(_command.FontMode.Underline(value));
-		}
+        public void BoldMode(PrinterModeState state)
+        {
+            Append(_command.FontMode.Bold(state));
+        }
 
-		public void UnderlineMode(PrinterModeState state)
-		{
-			Append(_command.FontMode.Underline(state));
-		}
+        public void UnderlineMode(string value)
+        {
+            Append(_command.FontMode.Underline(value));
+        }
 
-		public void ExpandedMode(string value)
-		{
-			Append(_command.FontMode.Expanded(value));
-		}
+        public void UnderlineMode(PrinterModeState state)
+        {
+            Append(_command.FontMode.Underline(state));
+        }
 
-		public void ExpandedMode(PrinterModeState state)
-		{
-			Append(_command.FontMode.Expanded(state));
-		}
+        public void ExpandedMode(string value)
+        {
+            Append(_command.FontMode.Expanded(value));
+        }
 
-		public void CondensedMode(string value)
-		{
-			Append(_command.FontMode.Condensed(value));
-		}
+        public void ExpandedMode(PrinterModeState state)
+        {
+            Append(_command.FontMode.Expanded(state));
+        }
 
-		public void CondensedMode(PrinterModeState state)
-		{
-			Append(_command.FontMode.Condensed(state));
-		}
+        public void CondensedMode(string value)
+        {
+            Append(_command.FontMode.Condensed(value));
+        }
 
-		#endregion
+        public void CondensedMode(PrinterModeState state)
+        {
+            Append(_command.FontMode.Condensed(state));
+        }
 
-		#region FontWidth
+        #endregion
 
-		public void NormalWidth()
-		{
-			Append(_command.FontWidth.Normal());
-		}
+        #region FontWidth
 
-		public void DoubleWidth2()
-		{
-			Append(_command.FontWidth.DoubleWidth2());
-		}
+        public void NormalWidth()
+        {
+            Append(_command.FontWidth.Normal());
+        }
 
-		public void DoubleWidth3()
-		{
-			Append(_command.FontWidth.DoubleWidth3());
-		}
+        public void DoubleWidth2()
+        {
+            Append(_command.FontWidth.DoubleWidth2());
+        }
 
-		#endregion
+        public void DoubleWidth3()
+        {
+            Append(_command.FontWidth.DoubleWidth3());
+        }
 
-		#region Alignment
+        #endregion
 
-		public void AlignLeft()
-		{
-			Append(_command.Alignment.Left());
-		}
+        #region Alignment
 
-		public void AlignRight()
-		{
-			Append(_command.Alignment.Right());
-		}
+        public void AlignLeft()
+        {
+            Append(_command.Alignment.Left());
+        }
 
-		public void AlignCenter()
-		{
-			Append(_command.Alignment.Center());
-		}
+        public void AlignRight()
+        {
+            Append(_command.Alignment.Right());
+        }
 
-		#endregion
+        public void AlignCenter()
+        {
+            Append(_command.Alignment.Center());
+        }
 
-		#region PaperCut
+        #endregion
 
-		public void FullPaperCut()
-		{
-			Append(_command.PaperCut.Full());
-		}
+        #region PaperCut
 
-		public void PartialPaperCut()
-		{
-			Append(_command.PaperCut.Partial());
-		}
+        public void FullPaperCut()
+        {
+            Append(_command.PaperCut.Full());
+        }
 
-		#endregion
+        public void PartialPaperCut()
+        {
+            Append(_command.PaperCut.Partial());
+        }
 
-		#region Drawer
+        #endregion
 
-		public void OpenDrawer()
-		{
-			Append(_command.Drawer.Open());
-		}
+        #region Drawer
 
-		#endregion
+        public void OpenDrawer()
+        {
+            Append(_command.Drawer.Open());
+        }
 
-		#region QrCode
+        #endregion
 
-		public void QrCode(string qrData)
-		{
-			Append(_command.QrCode.Print(qrData));
-		}
+        #region QrCode
 
-		public void QrCode(string qrData, QrCodeSize qrCodeSize)
-		{
-			Append(_command.QrCode.Print(qrData, qrCodeSize));
-		}
+        public void QrCode(string qrData)
+        {
+            Append(_command.QrCode.Print(qrData));
+        }
 
-		#endregion
+        public void QrCode(string qrData, QrCodeSize qrCodeSize)
+        {
+            Append(_command.QrCode.Print(qrData, qrCodeSize));
+        }
 
-		#region BarCode
+        #endregion
 
-		public void Code128(string code)
-		{
-			Append(_command.BarCode.Code128(code));
-		}
+        #region BarCode
 
-		public void Code39(string code)
-		{
-			Append(_command.BarCode.Code39(code));
-		}
+        public void Code128(string code)
+        {
+            Append(_command.BarCode.Code128(code));
+        }
 
-		public void Ean13(string code)
-		{
-			Append(_command.BarCode.Ean13(code));
-		}
+        public void Code39(string code)
+        {
+            Append(_command.BarCode.Code39(code));
+        }
 
-		#endregion
+        public void Ean13(string code)
+        {
+            Append(_command.BarCode.Ean13(code));
+        }
 
-		#endregion
-	}
+        #endregion
+
+        #endregion
+    }
 }

@@ -4,6 +4,7 @@
     {
         int ColsNomal { get; }
         int ColsCondensed { get; }
+        int ColsExpanded { get; }
         IFontMode FontMode { get; set; }
         IFontWidth FontWidth { get; set; }
         IAlignment Alignment { get; set; }

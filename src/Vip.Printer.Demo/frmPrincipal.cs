@@ -30,6 +30,7 @@ namespace Vip.Printer.Demo
 			printer.UnderlineMode("Texto Sublinhado");
 			printer.ExpandedMode(PrinterModeState.On);
 			printer.Append("Texto Expandido");
+			printer.Append("....+....1....+....2....+");
 			printer.ExpandedMode(PrinterModeState.Off);
 			printer.CondensedMode(PrinterModeState.On);
 			printer.Append("Texto condensado");

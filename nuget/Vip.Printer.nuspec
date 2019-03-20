@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Vip.Printer</id>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <authors>Leandro Ferreira</authors>
     <owners>VIP Soluções</owners>
     <licenseUrl>https://github.com/leandrovip/Vip.Printer/blob/master/LICENSE</licenseUrl>
@@ -10,7 +10,7 @@
     <!-- <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc/Bema e Esc/Pos</description>
-    <releaseNotes>Release 1.0.4</releaseNotes>
+    <releaseNotes>Fix EscBema/QRCode</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>vip printer escpos escbema posprinter</tags>
     <!-- <dependencies> -->
