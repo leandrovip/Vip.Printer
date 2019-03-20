@@ -17,14 +17,18 @@ Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc
 - Código de Barras (EAN 13, EAN 128)
 
 #### Comandos Implementados
-- [ ] EscBema
-- [ ] EscPos
+
+* [X] EscBema
+* [ ] EscPos
 
 #### Impressoras testadas
-- **_Bematech_**
-- [ ] Mp-2500
-- [ ] Mp-2800
-- [ ] Mp-4200
 
-- **_Elgin_**
-- [ ] Elgin I9
+**_Bematech_**
+
+* [x] Mp-2500
+* [ ] Mp-2800
+* [ ] Mp-4200
+
+**_Elgin_**
+
+* [ ] Elgin I9
