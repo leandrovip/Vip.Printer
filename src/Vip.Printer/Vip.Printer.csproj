@@ -51,6 +51,7 @@
     <Compile Include="EscBemaCommands\EscBema.cs" />
     <Compile Include="EscBemaCommands\FontMode.cs" />
     <Compile Include="EscBemaCommands\FontWidth.cs" />
+    <Compile Include="EscBemaCommands\InitializePrint.cs" />
     <Compile Include="EscBemaCommands\PaperCut.cs" />
     <Compile Include="EscBemaCommands\QrCode.cs" />
     <Compile Include="Extensions\PrinterExtensions.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Interfaces\Command\IDrawer.cs" />
     <Compile Include="Interfaces\Command\IFontWidth.cs" />
     <Compile Include="Interfaces\Command\IFontMode.cs" />
+    <Compile Include="Interfaces\Command\IInitializePrint.cs" />
     <Compile Include="Interfaces\Command\IPaperCut.cs" />
     <Compile Include="Interfaces\Command\IPrintCommand.cs" />
     <Compile Include="Interfaces\Command\IQrCode.cs" />

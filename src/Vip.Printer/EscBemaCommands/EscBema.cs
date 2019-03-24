@@ -14,6 +14,7 @@ namespace Vip.Printer.EscBemaCommands
         public IDrawer Drawer { get; set; }
         public IQrCode QrCode { get; set; }
         public IBarCode BarCode { get; set; }
+        public IInitializePrint InitializePrint { get; set; }
         public int ColsNomal => 50;
         public int ColsCondensed => 67;
         public int ColsExpanded => 25;
@@ -31,6 +32,7 @@ namespace Vip.Printer.EscBemaCommands
             Drawer = new Drawer();
             QrCode = new QrCode();
             BarCode = new BarCode();
+            InitializePrint = new InitializePrint();
         }
 
         #endregion
