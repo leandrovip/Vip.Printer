@@ -34,6 +34,7 @@
 			this.btnQrCode = new System.Windows.Forms.Button();
 			this.btnCodigoDeBarras = new System.Windows.Forms.Button();
 			this.btnCodigoEan13 = new System.Windows.Forms.Button();
+			this.btnInicializar = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// btnImprimirTeste
@@ -96,10 +97,21 @@
 			this.btnCodigoEan13.UseVisualStyleBackColor = true;
 			this.btnCodigoEan13.Click += new System.EventHandler(this.btnCodigoEan13_Click);
 			// 
+			// btnInicializar
+			// 
+			this.btnInicializar.Location = new System.Drawing.Point(151, 112);
+			this.btnInicializar.Name = "btnInicializar";
+			this.btnInicializar.Size = new System.Drawing.Size(133, 44);
+			this.btnInicializar.TabIndex = 4;
+			this.btnInicializar.Text = "Inicializar Impressora (Reset)";
+			this.btnInicializar.UseVisualStyleBackColor = true;
+			this.btnInicializar.Click += new System.EventHandler(this.btnInicializar_Click);
+			// 
 			// frmPrincipal
 			// 
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
 			this.ClientSize = new System.Drawing.Size(297, 308);
+			this.Controls.Add(this.btnInicializar);
 			this.Controls.Add(this.btnCodigoEan13);
 			this.Controls.Add(this.btnCodigoDeBarras);
 			this.Controls.Add(this.btnQrCode);
@@ -123,5 +135,6 @@
 		private System.Windows.Forms.Button btnQrCode;
 		private System.Windows.Forms.Button btnCodigoDeBarras;
 		private System.Windows.Forms.Button btnCodigoEan13;
-	}
+        private System.Windows.Forms.Button btnInicializar;
+    }
 }

@@ -12,6 +12,7 @@
         IDrawer Drawer { get; set; }
         IQrCode QrCode { get; set; }
         IBarCode BarCode { get; set; }
+        IInitializePrint InitializePrint { get; set; }
         byte[] Separator();
     }
 }

@@ -77,6 +77,12 @@ namespace Vip.Printer.Interfaces.Printer
 
         #endregion
 
+        #region InitializePrint
+
+        void InitializePrint();
+
+        #endregion
+
         #endregion
     }
 }

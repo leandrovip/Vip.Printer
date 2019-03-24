@@ -283,6 +283,15 @@ namespace Vip.Printer
 
         #endregion
 
+        #region InitializePrint
+
+        public void InitializePrint()
+        {
+            RawPrinterHelper.SendBytesToPrinter(_printerName, _command.InitializePrint.Initialize());
+        }
+
+        #endregion
+
         #endregion
     }
 }
