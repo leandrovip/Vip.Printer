@@ -112,6 +112,11 @@ namespace Vip.Printer
                 NewLine();
         }
 
+        public void Clear()
+        {
+            _buffer = null;
+        }
+
         private void AppendString(string value, bool useLf)
         {
             if (string.IsNullOrEmpty(value))

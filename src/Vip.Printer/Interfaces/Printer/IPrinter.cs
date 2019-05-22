@@ -13,6 +13,7 @@ namespace Vip.Printer.Interfaces.Printer
         void AppendWithoutLf(string value);
         void NewLine();
         void NewLines(int lines);
+        void Clear();
 
         #region Commands
 
