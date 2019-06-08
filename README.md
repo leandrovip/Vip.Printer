@@ -38,6 +38,7 @@ printer.PrintDocument();
 
 ## Funcionalidades
 
+- Alinhamento
 - Negrito
 - Itálico
 - Sublinhado
@@ -47,6 +48,7 @@ printer.PrintDocument();
 - Abertura de Gaveta (dinheiro)
 - QRCode
 - Código de Barras (EAN 13, EAN 128, CODE39)
+- Guilhotina
 
 #### Comandos Implementados
 
