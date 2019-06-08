@@ -14,5 +14,6 @@
         IBarCode BarCode { get; set; }
         IInitializePrint InitializePrint { get; set; }
         byte[] Separator();
+        byte[] AutoTest();
     }
 }
