@@ -2,9 +2,9 @@
 using Vip.Printer.Extensions;
 using Vip.Printer.Interfaces.Command;
 
-namespace Vip.Printer.EscBemaCommands
+namespace Vip.Printer.EscPosCommands
 {
-    internal class EscBema : IPrintCommand
+    internal class EscPos : IPrintCommand
     {
         #region Properties
 
@@ -16,15 +16,15 @@ namespace Vip.Printer.EscBemaCommands
         public IQrCode QrCode { get; set; }
         public IBarCode BarCode { get; set; }
         public IInitializePrint InitializePrint { get; set; }
-        public int ColsNomal => 50;
-        public int ColsCondensed => 67;
-        public int ColsExpanded => 25;
+        public int ColsNomal => 48;
+        public int ColsCondensed => 64;
+        public int ColsExpanded => 24;
 
         #endregion
 
         #region Constructor
 
-        public EscBema()
+        public EscPos()
         {
             FontMode = new FontMode();
             FontWidth = new FontWidth();

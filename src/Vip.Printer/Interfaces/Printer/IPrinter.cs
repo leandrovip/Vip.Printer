@@ -18,6 +18,8 @@ namespace Vip.Printer.Interfaces.Printer
         #region Commands
 
         void Separator();
+        void AutoTest();
+        void TestPrinter();
 
         #region FontMode
 

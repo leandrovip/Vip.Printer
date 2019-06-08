@@ -54,6 +54,15 @@
     <Compile Include="EscBemaCommands\InitializePrint.cs" />
     <Compile Include="EscBemaCommands\PaperCut.cs" />
     <Compile Include="EscBemaCommands\QrCode.cs" />
+    <Compile Include="EscPosCommands\Alignment.cs" />
+    <Compile Include="EscPosCommands\BarCode.cs" />
+    <Compile Include="EscPosCommands\Drawer.cs" />
+    <Compile Include="EscPosCommands\EscPos.cs" />
+    <Compile Include="EscPosCommands\FontMode.cs" />
+    <Compile Include="EscPosCommands\FontWidth.cs" />
+    <Compile Include="EscPosCommands\InitializePrint.cs" />
+    <Compile Include="EscPosCommands\PaperCut.cs" />
+    <Compile Include="EscPosCommands\QrCode.cs" />
     <Compile Include="Extensions\PrinterExtensions.cs" />
     <Compile Include="Interfaces\Command\IAlignment.cs" />
     <Compile Include="Interfaces\Command\IBarCode.cs" />
@@ -69,8 +78,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helper\RawPrinterHelper.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="EscPosCommands\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

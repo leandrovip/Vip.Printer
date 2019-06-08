@@ -48,6 +48,11 @@ namespace Vip.Printer.Extensions
 			return bytes.AddBytes("\n");
 		}
 
+		public static byte[] AddCrLF(this byte[] bytes)
+		{
+			return bytes.AddBytes("\r\n");
+		}
+
 		public static bool IsNullOrEmpty(this string value)
 		{
 			return string.IsNullOrEmpty(value);

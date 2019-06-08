@@ -27,10 +27,12 @@
 // <summary></summary>
 // ***********************************************************************
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Vip.Printer.Enums;
 using Vip.Printer.EscBemaCommands;
+using Vip.Printer.EscPosCommands;
 using Vip.Printer.Helper;
 using Vip.Printer.Interfaces.Command;
 using Vip.Printer.Interfaces.Printer;
@@ -44,6 +46,7 @@ namespace Vip.Printer
         private byte[] _buffer;
         private readonly string _printerName;
         private readonly IPrintCommand _command;
+        private readonly PrinterType _printerType;
 
         #endregion
 
@@ -52,11 +55,12 @@ namespace Vip.Printer
         public Printer(string printerName, PrinterType type)
         {
             _printerName = string.IsNullOrEmpty(printerName) ? "temp.prn" : printerName.Trim();
+            _printerType = type;
 
             switch (type)
             {
                 case PrinterType.Epson:
-                    //Command = new EscPosEpson();
+                    _command = new EscPos();
                     break;
                 case PrinterType.Bematech:
                     _command = new EscBema();
@@ -77,7 +81,8 @@ namespace Vip.Printer
             if (_buffer == null)
                 return;
 
-            RawPrinterHelper.SendBytesToPrinter(_printerName, _buffer);
+            if (!RawPrinterHelper.SendBytesToPrinter(_printerName, _buffer))
+                throw new ArgumentException("Não foi possível acessar a impressora: " + _printerName);
         }
 
         public void Append(string value)
@@ -101,6 +106,24 @@ namespace Vip.Printer
             AppendString(value, false);
         }
 
+        private void AppendString(string value, bool useLf)
+        {
+            if (string.IsNullOrEmpty(value))
+                return;
+
+            if (useLf) value += "\n";
+
+            var list = new List<byte>();
+            if (_buffer != null) list.AddRange(_buffer);
+
+            var bytes = _printerType == PrinterType.Bematech
+                ? Encoding.GetEncoding(850).GetBytes(value)
+                : Encoding.GetEncoding("IBM860").GetBytes(value);
+
+            list.AddRange(bytes);
+            _buffer = list.ToArray();
+        }
+
         public void NewLine()
         {
             Append("\r");
@@ -117,20 +140,6 @@ namespace Vip.Printer
             _buffer = null;
         }
 
-        private void AppendString(string value, bool useLf)
-        {
-            if (string.IsNullOrEmpty(value))
-                return;
-
-            if (useLf) value += "\n";
-
-            var list = new List<byte>();
-            if (_buffer != null) list.AddRange(_buffer);
-            list.AddRange(Encoding.GetEncoding(850).GetBytes(value));
-
-            _buffer = list.ToArray();
-        }
-
         #endregion
 
         #region Commands
@@ -138,6 +147,48 @@ namespace Vip.Printer
         public void Separator()
         {
             Append(_command.Separator());
+        }
+
+        public void AutoTest()
+        {
+            Append(_command.AutoTest());
+        }
+
+        public void TestPrinter()
+        {
+            Append("TESTE DE IMPRESSÃO NORMAL - 48 COLUNAS");
+            Append("....+....1....+....2....+....3....+....4....+...");
+            Separator();
+            Append("Texto Normal");
+            ItalicMode("Texto Itálico");
+            BoldMode("Texto Negrito");
+            UnderlineMode("Texto Sublinhado");
+            ExpandedMode(PrinterModeState.On);
+            Append("Texto Expandido");
+            Append("....+....1....+....2....");
+            ExpandedMode(PrinterModeState.Off);
+            CondensedMode(PrinterModeState.On);
+            Append("Texto condensado");
+            CondensedMode(PrinterModeState.Off);
+            Separator();
+
+            DoubleWidth2();
+            Append("Largura da Fonte 2");
+            DoubleWidth3();
+            Append("Largura da Fonte 3");
+            NormalWidth();
+            Append("Largura normal");
+            Separator();
+
+            AlignRight();
+            Append("Texto alinhado à direita");
+            AlignCenter();
+            Append("Texto alinhado ao centro");
+            AlignLeft();
+            Append("Texto alinhado à esquerda");
+            NewLines(5);
+            Append("Final de Teste :)");
+            Separator();
         }
 
         #region FontMode
