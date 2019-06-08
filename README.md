@@ -4,7 +4,39 @@
 
 Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc/Bema e Esc/Pos, possibilitando utilizar diversas impressoras e de diversas marcas como Bematech, Elgin, Epson, Sweda, etc.
 
-### Funcionalidades
+Dúvidas, sugestões e PR´s são bem vindos, abra uma issue :)
+
+## Pré requisitos
+
+- .Net Framework 4.6.2
+
+## Instalação via NuGet
+
+```
+Install-Package Vip.Printer
+```
+
+## Exemplo de uso
+
+```c#
+using Vip.Printer;
+
+/* 
+Instancie a classe Printer
+
+Para instanciar a classe é necessário dois parâmetros:
+- printerName (Nome da impressora, porta ou o caminho do compartilhamento)
+- printerType (Set de comandos que será utilizado. PrinterType.Bematech ou PrinterType.Epson)
+*/ 
+
+var printer = new Printer("MP2500", PrinterType.Bematech); 
+
+printer.Append("Meu texto aqui!");
+printer.PartialPaperCut();
+printer.PrintDocument();
+```
+
+## Funcionalidades
 
 - Negrito
 - Itálico
@@ -14,12 +46,12 @@ Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc
 - Tamanho da Fonte
 - Abertura de Gaveta (dinheiro)
 - QRCode
-- Código de Barras (EAN 13, EAN 128)
+- Código de Barras (EAN 13, EAN 128, CODE39)
 
 #### Comandos Implementados
 
-* [X] EscBema
-* [ ] EscPos
+* [x] EscBema
+* [x] EscPos
 
 #### Impressoras testadas
 
@@ -31,4 +63,9 @@ Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc
 
 **_Elgin_**
 
-* [ ] Elgin I9
+* [x] Elgin I9
+
+# Licença
+MIT
+
+
