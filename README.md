@@ -8,7 +8,7 @@ Dúvidas, sugestões e PR´s são bem vindos, abra uma issue :)
 
 ## Pré requisitos
 
-- .Net Framework 4.6.2
+- .Net Framework 4.6.2+
 
 ## Instalação via NuGet
 
@@ -57,15 +57,14 @@ printer.PrintDocument();
 
 #### Impressoras testadas
 
-**_Bematech_**
+**_EscBema_**
 
-* [x] Mp-2500
-* [ ] Mp-2800
-* [ ] Mp-4200
+* [x] Bematech MP-2500
 
-**_Elgin_**
+**_EscPos_**
 
 * [x] Elgin I9
+* [x] Epson TM-T20
 
 # Licença
 MIT
