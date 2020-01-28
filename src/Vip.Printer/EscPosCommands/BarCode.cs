@@ -14,8 +14,7 @@ namespace Vip.Printer.EscPosCommands
                 .AddBytes(new byte[] {29, 107, 73}) // printCode
                 .AddBytes(new[] {(byte) (code.Length + 2)})
                 .AddBytes(new[] {'{'.ToByte(), 'C'.ToByte()})
-                .AddBytes(code)
-                .AddLF();
+                .AddBytes(code);
         }
 
         public byte[] Code39(string code)
@@ -26,8 +25,7 @@ namespace Vip.Printer.EscPosCommands
                 .AddBytes(new byte[] {29, 72, 0}) // If print code informed
                 .AddBytes(new byte[] {29, 107, 4})
                 .AddBytes(code)
-                .AddBytes(new byte[] {0})
-                .AddLF();
+                .AddBytes(new byte[] {0});
         }
 
         public byte[] Ean13(string code)
@@ -39,8 +37,7 @@ namespace Vip.Printer.EscPosCommands
                 .AddBytes(new byte[] {29, 104, 50}) // Height
                 .AddBytes(new byte[] {29, 72, 0}) // If print code informed
                 .AddBytes(new byte[] {29, 107, 67, 12})
-                .AddBytes(code.Substring(0, 12))
-                .AddLF();
+                .AddBytes(code.Substring(0, 12));
         }
     }
 }

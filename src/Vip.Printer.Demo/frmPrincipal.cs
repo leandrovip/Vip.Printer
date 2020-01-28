@@ -76,10 +76,8 @@ namespace Vip.Printer.Demo
             printer.Separator();
             printer.Append("Code 128");
             printer.Code128("0123456789012345672365");
-            printer.NewLine();
             printer.Append("Code 3 9");
             printer.Code39("TESTE");
-            printer.NewLine();
             printer.Append("Fim de Teste");
             printer.PartialPaperCut();
 
