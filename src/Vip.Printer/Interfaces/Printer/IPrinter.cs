@@ -55,7 +55,9 @@ namespace Vip.Printer.Interfaces.Printer
         #region PaperCut
 
         void FullPaperCut();
+        void FullPaperCut(bool predicate);
         void PartialPaperCut();
+        void PartialPaperCut(bool predicate);
 
         #endregion
 

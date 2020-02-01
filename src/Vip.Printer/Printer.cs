@@ -290,9 +290,21 @@ namespace Vip.Printer
             Append(_command.PaperCut.Full());
         }
 
+        public void FullPaperCut(bool predicate)
+        {
+            if (predicate)
+                FullPaperCut();
+        }
+
         public void PartialPaperCut()
         {
             Append(_command.PaperCut.Partial());
+        }
+
+        public void PartialPaperCut(bool predicate)
+        {
+            if (predicate)
+                PartialPaperCut();
         }
 
         #endregion
