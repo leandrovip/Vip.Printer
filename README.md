@@ -60,6 +60,7 @@ printer.PrintDocument();
 **_EscBema_**
 
 * [x] Bematech MP-2500
+* [x] Bematech MP-4200
 
 **_EscPos_**
 
