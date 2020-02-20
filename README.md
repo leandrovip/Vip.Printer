@@ -65,6 +65,9 @@ printer.PrintDocument();
 
 * [x] Elgin I9
 * [x] Epson TM-T20
+* [x] Tanca TP-650
+* [x] Tanca TP-550
+* [x] Jetway JP-880
 
 # Licença
 MIT
