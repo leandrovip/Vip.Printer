@@ -8,7 +8,8 @@ Dúvidas, sugestões e PR´s são bem vindos, abra uma issue :)
 
 ## Pré requisitos
 
-- .Net Framework 4.6.2+
+- .Net Framework 4.5+
+- .Net Standard 2.0
 
 ## Instalação via NuGet
 
@@ -49,6 +50,7 @@ printer.PrintDocument();
 - QRCode
 - Código de Barras (EAN 13, EAN 128, CODE39)
 - Guilhotina
+- Propriedades com o número limite de colunas
 
 #### Comandos Implementados
 
@@ -60,11 +62,16 @@ printer.PrintDocument();
 **_EscBema_**
 
 * [x] Bematech MP-2500
+* [x] Bematech MP-2800
 * [x] Bematech MP-4200
 
 **_EscPos_**
 
+* [x] Bematech MP-2500
+* [x] Bematech MP-2800
+* [x] Bematech MP-4200
 * [x] Elgin I9
+* [x] Elgin VOX
 * [x] Epson TM-T20
 * [x] Tanca TP-650
 * [x] Tanca TP-550
