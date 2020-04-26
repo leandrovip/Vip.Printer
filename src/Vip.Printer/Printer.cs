@@ -52,6 +52,14 @@ namespace Vip.Printer
 
         #region Constructors
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Printer"/> class.
+        /// </summary>
+        /// <param name="printerName">Printer name, shared name or port of printer install</param>
+        /// <param name="type">Command set of type printer</param>
+        /// <param name="colsNormal">Number of columns for normal mode print</param>
+        /// <param name="colsCondensed">Number of columns for condensed mode print</param>
+        /// <param name="colsExpanded">Number of columns for expanded mode print</param>
         public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded)
         {
             _printerName = string.IsNullOrEmpty(printerName) ? "temp.prn" : printerName.Trim();
@@ -80,6 +88,11 @@ namespace Vip.Printer
             #endregion
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Printer"/> class.
+        /// </summary>
+        /// <param name="printerName">Printer name, shared name or port of printer install</param>
+        /// <param name="type">>Command set of type printer</param>
         public Printer(string printerName, PrinterType type) : this(printerName, type, 0, 0, 0) { }
 
         #endregion
