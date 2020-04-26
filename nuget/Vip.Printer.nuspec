@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Vip.Printer</id>
-    <version>1.0.11</version>
+    <version>1.0.12</version>
     <authors>Leandro Ferreira</authors>
     <owners>VIP Soluções</owners>
     <licenseUrl>https://github.com/leandrovip/Vip.Printer/blob/master/LICENSE</licenseUrl>
@@ -12,11 +12,9 @@
     <description>Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc/Bema e Esc/Pos</description>
     <copyright>Copyright 2019</copyright>
     <tags>vip printer escpos escbema posprinter</tags>
-    <!-- <dependencies> -->
-      <!-- <dependency id="SampleDependency" version="1.0" /> -->
-    <!-- </dependencies> -->
   </metadata>
   <files>
-        <file src="..\src\Vip.Printer\bin\Release\Vip.Printer.dll" target="lib\net462\Vip.Printer.dll"/>
+        <file src="..\src\Vip.Printer\bin\Release\net45\Vip.Printer.dll" target="lib\net45\Vip.Printer.dll"/>
+		<file src="..\src\Vip.Printer\bin\Release\netstandard2.0\Vip.Printer.dll" target="lib\netstandard2.0\Vip.Printer.dll"/>
     </files>
 </package>
