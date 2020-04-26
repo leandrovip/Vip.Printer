@@ -52,10 +52,12 @@ namespace Vip.Printer
 
         #region Constructors
 
-        public Printer(string printerName, PrinterType type)
+        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded)
         {
             _printerName = string.IsNullOrEmpty(printerName) ? "temp.prn" : printerName.Trim();
             _printerType = type;
+
+            #region Select printer type
 
             switch (type)
             {
@@ -66,15 +68,29 @@ namespace Vip.Printer
                     _command = new EscBema();
                     break;
             }
+
+            #endregion
+
+            #region Configure number columns
+
+            ColsNomal = colsNormal == 0 ? _command.ColsNomal : colsNormal;
+            ColsCondensed = colsCondensed == 0 ? _command.ColsCondensed : colsCondensed;
+            ColsExpanded = colsExpanded == 0 ? _command.ColsExpanded : colsExpanded;
+
+            #endregion
         }
+
+        public Printer(string printerName, PrinterType type) : this(printerName, type, 0, 0, 0) { }
 
         #endregion
 
         #region Methods
 
-        public int ColsNomal => _command.ColsNomal;
-        public int ColsCondensed => _command.ColsCondensed;
-        public int ColsExpanded => _command.ColsExpanded;
+        public int ColsNomal { get; private set; }
+
+        public int ColsCondensed { get; private set; }
+
+        public int ColsExpanded { get; private set; }
 
         public void PrintDocument()
         {
@@ -156,6 +172,7 @@ namespace Vip.Printer
 
         public void TestPrinter()
         {
+            AlignRight();
             Append("TESTE DE IMPRESSÃO NORMAL - 48 COLUNAS");
             Append("....+....1....+....2....+....3....+....4....+...");
             Separator();
