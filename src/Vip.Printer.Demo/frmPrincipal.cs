@@ -110,8 +110,6 @@ namespace Vip.Printer.Demo
             var printer = new Printer(txtImpressora.Text, ObterTipo());
             printer.AutoTest();
             printer.PrintDocument();
-
-            MessageBox.Show("Comando inicialize executado com sucesso!", "Vip.Printer");
         }
 
         private void btnSair_Click(object sender, EventArgs e)

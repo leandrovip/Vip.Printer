@@ -15,7 +15,7 @@ namespace Vip.Printer.EscBemaCommands
 
         private static byte[] SetEscBema()
         {
-            return new byte[] {29, 249, 53, 0};
+            return new byte[] {29, 249, 32, 0};
         }
 
         private static byte[] SetLineSpace3(byte range = 20)
