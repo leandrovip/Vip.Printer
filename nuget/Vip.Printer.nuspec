@@ -13,7 +13,7 @@
     <copyright>Copyright 2019</copyright>
     <tags>vip printer escpos escbema posprinter</tags>
     <dependencies>
-      <group targetFramework=".NetFramework 4.5" />
+      <group targetFramework="net45" />
       <group targetFramework=".NetStandard2.0" />
     </dependencies>
   </metadata>
