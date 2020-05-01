@@ -83,13 +83,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Vip.Printer\Vip.Printer.csproj">
-      <Project>{3D1CA98C-1503-4D02-A20E-CCCFD17006C4}</Project>
-      <Name>Vip.Printer</Name>
-    </ProjectReference>
+    <Content Include="iconOk.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="iconOk.ico" />
+    <ProjectReference Include="..\Vip.Printer\Vip.Printer.csproj">
+      <Project>{3d1ca98c-1503-4d02-a20e-cccfd17006c4}</Project>
+      <Name>Vip.Printer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

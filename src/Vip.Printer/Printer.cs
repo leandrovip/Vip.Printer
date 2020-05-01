@@ -53,7 +53,7 @@ namespace Vip.Printer
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Printer"/> class.
+        ///     Initializes a new instance of the <see cref="Printer" /> class.
         /// </summary>
         /// <param name="printerName">Printer name, shared name or port of printer install</param>
         /// <param name="type">Command set of type printer</param>
@@ -89,7 +89,7 @@ namespace Vip.Printer
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Printer"/> class.
+        ///     Initializes a new instance of the <see cref="Printer" /> class.
         /// </summary>
         /// <param name="printerName">Printer name, shared name or port of printer install</param>
         /// <param name="type">>Command set of type printer</param>
@@ -185,7 +185,7 @@ namespace Vip.Printer
 
         public void TestPrinter()
         {
-            AlignRight();
+            AlignLeft();
             Append("TESTE DE IMPRESSÃO NORMAL - 48 COLUNAS");
             Append("....+....1....+....2....+....3....+....4....+...");
             Separator();
