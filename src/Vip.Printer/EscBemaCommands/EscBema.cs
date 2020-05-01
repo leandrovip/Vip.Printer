@@ -1,5 +1,4 @@
-﻿using System.Text;
-using Vip.Printer.Enums;
+﻿using Vip.Printer.Enums;
 using Vip.Printer.Extensions;
 using Vip.Printer.Interfaces.Command;
 
@@ -51,9 +50,7 @@ namespace Vip.Printer.EscBemaCommands
 
         public byte[] AutoTest()
         {
-            const string comando = "COMANDO NÃO DISPONÍVEL PARA ESC/BEMA\n";
-            var bytes = Encoding.GetEncoding(850).GetBytes(comando);
-            return bytes;
+            return new byte[] {0x1D, 0xF9, 0x29, 0x30};
         }
 
         #endregion
