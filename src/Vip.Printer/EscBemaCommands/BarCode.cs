@@ -9,19 +9,23 @@ namespace Vip.Printer.EscBemaCommands
         {
             return new byte[] {29, 119, 2} // Width
                 .AddBytes(new byte[] {29, 104, 50}) // Height
+                .AddBytes(new byte[] {29, 102, 1}) // font hri character
                 .AddBytes(new byte[] {29, 72, 0}) // If print code informed
-                .AddBytes(new byte[] {29, 107, 73, 24, 123})
+                .AddBytes(new byte[] {29, 107, 73}) // printCode
+                .AddBytes(new[] {(byte) (code.Length + 2)})
+                .AddBytes(new[] {'{'.ToByte(), 'C'.ToByte()})
                 .AddBytes(code);
         }
 
         public byte[] Code39(string code)
         {
-            return new byte[] {29, 119, 13} // Width
+            return new byte[] {29, 119, 2} // Width
                 .AddBytes(new byte[] {29, 104, 50}) // Height
+                .AddBytes(new byte[] {29, 102, 0}) // font hri character
                 .AddBytes(new byte[] {29, 72, 0}) // If print code informed
-                .AddBytes(new byte[] {29, 102, 2})
-                .AddBytes(new byte[] {29, 107, 69})
-                .AddBytes(code);
+                .AddBytes(new byte[] {29, 107, 4})
+                .AddBytes(code)
+                .AddBytes(new byte[] {0});
         }
 
         public byte[] Ean13(string code)
