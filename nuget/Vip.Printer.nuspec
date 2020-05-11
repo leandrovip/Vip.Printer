@@ -2,11 +2,12 @@
 <package >
   <metadata>
     <id>Vip.Printer</id>
-    <version>1.0.13</version>
+    <version>1.0.14</version>
     <authors>Leandro Ferreira</authors>
     <owners>VIP Soluções</owners>
     <projectUrl>https://github.com/leandrovip/Vip.Printer</projectUrl>
     <description>Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc/Bema e Esc/Pos</description>
+	<releaseNotes>Fix codbar for Esc/Bema</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>vip printer escpos escbema posprinter</tags>
     <dependencies>
