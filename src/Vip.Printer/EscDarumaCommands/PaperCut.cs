@@ -7,12 +7,12 @@ namespace Vip.Printer.EscDarumaCommands
     {
         public byte[] Full()
         {
-            return new byte[] { 27, 'm'.ToByte() };
+            return new byte[] {27, 'm'.ToByte()};
         }
 
         public byte[] Partial()
         {
-            return new byte[] { 27, 'm'.ToByte() };
+            return new byte[] {27, 'm'.ToByte()};
         }
     }
 }

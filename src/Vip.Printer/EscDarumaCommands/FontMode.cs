@@ -17,8 +17,8 @@ namespace Vip.Printer.EscDarumaCommands
         public byte[] Bold(PrinterModeState state)
         {
             return state == PrinterModeState.On
-                ? new byte[] { 27, 'E'.ToByte() }
-                : new byte[] { 27, 'F'.ToByte() };
+                ? new byte[] {27, 'E'.ToByte()}
+                : new byte[] {27, 'F'.ToByte()};
         }
 
         public byte[] Condensed(string value)
@@ -32,8 +32,8 @@ namespace Vip.Printer.EscDarumaCommands
         public byte[] Condensed(PrinterModeState state)
         {
             return state == PrinterModeState.On
-                ? new byte[] { 27, 15 }
-                : new byte[] { 27, 18, 20 };
+                ? new byte[] {27, 15}
+                : new byte[] {27, 18, 20};
         }
 
         public byte[] Expanded(string value)
@@ -47,8 +47,8 @@ namespace Vip.Printer.EscDarumaCommands
         public byte[] Expanded(PrinterModeState state)
         {
             return state == PrinterModeState.On
-                ? new byte[] { 27, 'w'.ToByte(), 1 }
-                : new byte[] { 27, 'w'.ToByte(), 0 };
+                ? new byte[] {27, 'w'.ToByte(), 1}
+                : new byte[] {27, 'w'.ToByte(), 0};
         }
 
         public byte[] Italic(string value)
@@ -62,8 +62,8 @@ namespace Vip.Printer.EscDarumaCommands
         public byte[] Italic(PrinterModeState state)
         {
             return state == PrinterModeState.On
-                ? new byte[] { 27, '4'.ToByte(), 1 }
-                : new byte[] { 27, '4'.ToByte(), 0 };
+                ? new byte[] {27, '4'.ToByte(), 1}
+                : new byte[] {27, '4'.ToByte(), 0};
         }
 
         public byte[] Underline(string value)
@@ -77,8 +77,8 @@ namespace Vip.Printer.EscDarumaCommands
         public byte[] Underline(PrinterModeState state)
         {
             return state == PrinterModeState.On
-                ? new byte[] { 27, '-'.ToByte(), 1 }
-                : new byte[] { 27, '-'.ToByte(), 0 };
+                ? new byte[] {27, '-'.ToByte(), 1}
+                : new byte[] {27, '-'.ToByte(), 0};
         }
     }
 }

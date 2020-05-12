@@ -7,7 +7,7 @@ namespace Vip.Printer.EscDarumaCommands
     {
         public byte[] Initialize()
         {
-            return new byte[] { 27, '@'.ToByte() };
+            return new byte[] {27, '@'.ToByte()};
         }
     }
 }
