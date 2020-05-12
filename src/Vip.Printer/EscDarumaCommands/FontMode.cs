@@ -33,7 +33,7 @@ namespace Vip.Printer.EscDarumaCommands
         {
             return state == PrinterModeState.On
                 ? new byte[] { 27, 15 }
-                : new byte[] { 27, 18 };
+                : new byte[] { 27, 18, 20 };
         }
 
         public byte[] Expanded(string value)
