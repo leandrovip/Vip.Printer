@@ -48,7 +48,6 @@ namespace Vip.Printer.Demo
         {
             var stringQrCode =
                 "35190361099008000141599000022490004885145710|20190315181929|2479.35||K+VRwUKRomWZZcJhaeuJMIWxRb5QKP6Sh6BLzHZdmNdhPOvxo5Xx4oIYqkfA5sB6z4KzBepBLgDrYkeOCzjwVGWhvLA5C72eQzk9emvV6EIk6iXa9XU/HesRJAqqiSqjvvOvhR9orD0tTUj3DjwoZpn8vrSSK1v1nHxJZBah7r5e3FG8P93X47QgHJZXGRR7BSNA8CQ4N/hgEMqXbOCn/4zj0E6y5Xg/JcI09xC6vX+5SmILY2e1zEBIirxKsWpZN/DkXt/su79esaQFBJSgfCerok4kLK/vE54CMjJ//U5bhLRm/ocHuEJbg1Rvf36kpwIXEnPV/zG/luJita36qQ==";
-
             var printer = new Printer(txtImpressora.Text, ObterTipo());
             printer.AlignCenter();
             printer.BoldMode("Teste de QRCode");
@@ -64,6 +63,7 @@ namespace Vip.Printer.Demo
             printer.NewLine();
             printer.BoldMode("Fim de Teste");
             printer.AlignLeft();
+            printer.NewLines(5);
             printer.PartialPaperCut();
 
             printer.PrintDocument();
@@ -75,10 +75,11 @@ namespace Vip.Printer.Demo
             printer.Append("Teste de Código de Barras");
             printer.Separator();
             printer.Append("Code 128");
-            printer.Code128("0123456789012345672365");
-            printer.Append("Code 3 9");
+            printer.Code128("35190361099008000141599000022490004885145710");
+            printer.Append("Code  39");
             printer.Code39("TESTE");
             printer.Append("Fim de Teste");
+            printer.NewLines(5);
             printer.PartialPaperCut();
 
             printer.PrintDocument();
@@ -92,6 +93,7 @@ namespace Vip.Printer.Demo
             printer.Ean13("7898173500051");
             printer.NewLine();
             printer.Append("Fim de Teste");
+            printer.NewLines(5);
             printer.PartialPaperCut();
 
             printer.PrintDocument();
@@ -123,7 +125,7 @@ namespace Vip.Printer.Demo
 
         private PrinterType ObterTipo()
         {
-            return cboModelo.Text == "Bematech" ? PrinterType.Bematech : PrinterType.Epson;
+            return cboModelo.Text == "Bematech" ? PrinterType.Bematech : cboModelo.Text == "Daruma" ? PrinterType.Daruma : PrinterType.Epson;
         }
 
         #endregion

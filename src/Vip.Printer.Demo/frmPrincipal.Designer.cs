@@ -141,7 +141,8 @@
             this.cboModelo.FormattingEnabled = true;
             this.cboModelo.Items.AddRange(new object[] {
             "Bematech",
-            "Epson"});
+            "Epson",
+            "Daruma"});
             this.cboModelo.Location = new System.Drawing.Point(237, 33);
             this.cboModelo.Name = "cboModelo";
             this.cboModelo.Size = new System.Drawing.Size(105, 24);
