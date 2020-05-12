@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Vip.Printer.Enums;
+﻿using Vip.Printer.Enums;
 using Vip.Printer.Extensions;
 using Vip.Printer.Interfaces.Command;
 
@@ -53,7 +50,7 @@ namespace Vip.Printer.EscDarumaCommands
 
         public byte[] AutoTest()
         {
-            return new byte[] { 0 };
+            return new byte[] { 28, 'M'.ToByte(), 254, 0 };
         }
 
         #endregion

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Vip.Printer.Extensions;
+﻿using Vip.Printer.Extensions;
 using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscDarumaCommands
@@ -37,7 +34,6 @@ namespace Vip.Printer.EscDarumaCommands
                 .AddBytes(new byte[] { 2 }) // Witdh
                 .AddBytes(new byte[] { 50 }) // Height
                 .AddBytes(new byte[] { 0 }) // If print code informed (1 print, 0 dont print)
-                //.AddBytes(new byte[] { 29, 107, 67, 12 })
                 .AddBytes(code.Substring(0, 12))
                 .AddBytes(new byte[] { 0 });
         }
