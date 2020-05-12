@@ -32,6 +32,7 @@ using System.Collections.Generic;
 using System.Text;
 using Vip.Printer.Enums;
 using Vip.Printer.EscBemaCommands;
+using Vip.Printer.EscDarumaCommands;
 using Vip.Printer.EscPosCommands;
 using Vip.Printer.Helper;
 using Vip.Printer.Interfaces.Command;
@@ -74,6 +75,9 @@ namespace Vip.Printer
                     break;
                 case PrinterType.Bematech:
                     _command = new EscBema();
+                    break;
+                case PrinterType.Daruma:
+                    _command = new EscDaruma();
                     break;
             }
 
@@ -216,8 +220,9 @@ namespace Vip.Printer
             Append("Texto alinhado ao centro");
             AlignLeft();
             Append("Texto alinhado à esquerda");
-            NewLines(5);
+            NewLines(3);
             Append("Final de Teste :)");
+            NewLines(3);
             Separator();
         }
 

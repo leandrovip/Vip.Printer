@@ -3,6 +3,7 @@
     public enum PrinterType
     {
         Bematech,
-        Epson
+        Epson,
+        Daruma
     }
 }
