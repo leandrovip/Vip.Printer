@@ -50,7 +50,7 @@ namespace Vip.Printer.EscDarumaCommands
 
         public byte[] AutoTest()
         {
-            return new byte[] { 28, 'M'.ToByte(), 254, 0 };
+            return new byte[] {28, 'M'.ToByte(), 254, 0};
         }
 
         #endregion

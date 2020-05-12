@@ -2,7 +2,7 @@
 
 # Vip.Printer  
 
-Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc/Bema e Esc/Pos, possibilitando utilizar diversas impressoras e de diversas marcas como Bematech, Elgin, Epson, Sweda, etc.
+Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc/Bema, Esc/Daruma e Esc/Pos. Possibilita utilizar diversas impressoras e de diversas marcas como Bematech, Elgin, Epson, Sweda, Tanca, Daruma, etc.
 
 Dúvidas, sugestões e PR´s são bem vindos, abra uma issue :)
 
@@ -27,7 +27,7 @@ Instancie a classe Printer
 
 Para instanciar a classe é necessário dois parâmetros:
 - printerName (Nome da impressora, porta ou o caminho do compartilhamento)
-- printerType (Set de comandos que será utilizado. PrinterType.Bematech ou PrinterType.Epson)
+- printerType (Set de comandos que será utilizado. PrinterType.Bematech, PrinterType.Epson ou PrinterType.Daruma)
 */ 
 
 var printer = new Printer("MP2500", PrinterType.Bematech); 
@@ -55,6 +55,7 @@ printer.PrintDocument();
 #### Comandos Implementados
 
 * [x] EscBema
+* [x] EscDaruma
 * [x] EscPos
 
 #### Impressoras testadas
@@ -63,6 +64,10 @@ printer.PrintDocument();
 
 * [x] Bematech MP-2500
 * [x] Bematech MP-4200
+
+**_EscDaruma_**
+
+* [x] Daruma DR-700
 
 **_EscPos_**
 

@@ -7,17 +7,17 @@ namespace Vip.Printer.EscDarumaCommands
     {
         public byte[] Center()
         {
-            return new byte[] { 27, 'j'.ToByte(), 1 };
+            return new byte[] {27, 'j'.ToByte(), 1};
         }
 
         public byte[] Left()
         {
-            return new byte[] { 27, 'j'.ToByte(), 0 };
+            return new byte[] {27, 'j'.ToByte(), 0};
         }
 
         public byte[] Right()
         {
-            return new byte[] { 27, 'j'.ToByte(), 2 };
+            return new byte[] {27, 'j'.ToByte(), 2};
         }
     }
 }

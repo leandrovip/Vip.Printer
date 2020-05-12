@@ -10,21 +10,21 @@ namespace Vip.Printer.EscDarumaCommands
     {
         private static byte[] Size(QrCodeSize size)
         {
-            return new[] { (size + 3).ToByte() };
+            return new[] {(size + 3).ToByte()};
         }
 
         private static IEnumerable<byte> StoreQr(string qrData, QrCodeSize size)
         {
             var length = qrData.Length + 3;
-            var b = (byte)(length % 255);
-            var b2 = (byte)(length / 255);
+            var b = (byte) (length % 255);
+            var b2 = (byte) (length / 255);
 
-            return new byte[] { 27, 106, 49 }
-                .AddBytes(new byte[] { 27, 129 })
-                .AddBytes(new[] { b })
-                .AddBytes(new[] { b2 })
+            return new byte[] {27, 106, 49}
+                .AddBytes(new byte[] {27, 129})
+                .AddBytes(new[] {b})
+                .AddBytes(new[] {b2})
                 .AddBytes(Size(size))
-                .AddBytes(new byte[] { 'M'.ToByte() });
+                .AddBytes(new[] {'M'.ToByte()});
         }
 
         public byte[] Print(string qrData)
