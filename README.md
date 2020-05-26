@@ -1,6 +1,19 @@
-[![Nuget count](https://img.shields.io/nuget/v/Vip.Printer.svg)](https://www.nuget.org/packages/Vip.Printer/)
 
-# Vip.Printer  
+<h2 align="center"><strong>Vip.Printer</strong> - Impressão em mini-impressoras de um jeito simples e fácil :page_facing_up: :card_index:</h2> 
+
+<p align="center">
+  <a href="https://raw.githubusercontent.com/leandrovip/Vip.Printer/master/LICENSE">
+    <img src="https://img.shields.io/github/license/leandrovip/Vip.Printer" />
+  </a>
+  
+  <a href="https://www.nuget.org/packages/Vip.Printer/">
+    <img alt="Nuget" src="https://img.shields.io/nuget/dt/Vip.Printer?label=NuGet%20downloads&style=flat-square">
+  </a>
+  
+  <a href="https://www.nuget.org/packages/Vip.Printer/">
+     <img alt="NuGet" src="https://img.shields.io/nuget/v/Vip.Printer.svg">
+  </a>
+</p>
 
 Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc/Bema, Esc/Daruma e Esc/Pos. Possibilita utilizar diversas impressoras e de diversas marcas como Bematech, Elgin, Epson, Sweda, Tanca, Daruma, etc.
 
