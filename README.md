@@ -15,7 +15,7 @@
   </a>
 </p>
 
-Biblioteca para realizar impressões em mini-impressoras utilizando comandos Esc/Bema, Esc/Daruma e Esc/Pos. Possibilita utilizar diversas impressoras e de diversas marcas como Bematech, Elgin, Epson, Sweda, Tanca, Daruma, etc.
+Biblioteca para realizar impressões (mini-impressoras / impressora não fiscal) utilizando comandos Esc/Bema, Esc/Daruma e Esc/Pos. Possibilita utilizar diversas impressoras e de diversas marcas como Bematech, Elgin, Epson, Sweda, Tanca, Daruma, Jetway, etc.
 
 Dúvidas, sugestões e PR´s são bem vindos, abra uma issue :)
 
