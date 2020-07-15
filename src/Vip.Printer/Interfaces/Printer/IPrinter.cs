@@ -10,12 +10,16 @@ namespace Vip.Printer.Interfaces.Printer
         int ColsCondensed { get; }
         int ColsExpanded { get; }
         void PrintDocument();
-        void Append(string value);
-        void Append(byte[] value);
-        void AppendWithoutLf(string value);
+        void Write(string value);
+        void Write(byte[] value);
+        void WriteLine(string value);
         void NewLine();
         void NewLines(int lines);
         void Clear();
+
+        void Append(string value);
+        void Append(byte[] value);
+        void AppendWithoutLf(string value);
 
         #region Commands
 
