@@ -1,4 +1,5 @@
 ﻿using Vip.Printer.Enums;
+using Vip.Printer.EscPosCommands;
 using Vip.Printer.Extensions;
 using Vip.Printer.Interfaces.Command;
 
@@ -14,6 +15,7 @@ namespace Vip.Printer.EscDarumaCommands
         public IPaperCut PaperCut { get; set; }
         public IDrawer Drawer { get; set; }
         public IQrCode QrCode { get; set; }
+        public IImage Image { get; set; }
         public IBarCode BarCode { get; set; }
         public IInitializePrint InitializePrint { get; set; }
         public int ColsNomal => 48;
@@ -32,6 +34,7 @@ namespace Vip.Printer.EscDarumaCommands
             PaperCut = new PaperCut();
             Drawer = new Drawer();
             QrCode = new QrCode();
+            Image = new Image();
             BarCode = new BarCode();
             InitializePrint = new InitializePrint();
         }

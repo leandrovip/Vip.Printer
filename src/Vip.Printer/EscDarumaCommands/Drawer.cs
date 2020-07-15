@@ -3,7 +3,7 @@ using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscDarumaCommands
 {
-    public class Drawer : IDrawer
+    internal class Drawer : IDrawer
     {
         public byte[] Open()
         {

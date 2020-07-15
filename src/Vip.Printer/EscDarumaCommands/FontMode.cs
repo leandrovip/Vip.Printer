@@ -4,7 +4,7 @@ using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscDarumaCommands
 {
-    public class FontMode : IFontMode
+    internal class FontMode : IFontMode
     {
         public byte[] Bold(string value)
         {

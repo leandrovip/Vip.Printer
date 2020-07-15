@@ -2,7 +2,7 @@
 
 namespace Vip.Printer.EscDarumaCommands
 {
-    public class FontWidth : IFontWidth
+    internal class FontWidth : IFontWidth
     {
         public byte[] DoubleWidth2()
         {

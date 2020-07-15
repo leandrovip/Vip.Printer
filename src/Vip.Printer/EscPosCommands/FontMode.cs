@@ -4,7 +4,7 @@ using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscPosCommands
 {
-    public class FontMode : IFontMode
+    internal class FontMode : IFontMode
     {
         public byte[] Italic(string value)
         {

@@ -84,6 +84,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="iconOk.ico" />
+    <Content Include="images\logo-vip.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\logo-vip2.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vip.Printer\Vip.Printer.csproj">
@@ -91,5 +97,6 @@
       <Name>Vip.Printer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
