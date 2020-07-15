@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
+using Vip.Printer.Extensions;
 using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscPosCommands
@@ -59,6 +60,7 @@ namespace Vip.Printer.EscPosCommands
                 list.AddRange(data2);
             }
 
+            list.AddRange(new byte[] { 27, '@'.ToByte()});
             return list.ToArray();
         }
     }

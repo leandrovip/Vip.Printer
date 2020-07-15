@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using Vip.Printer.Enums;
-using Vip.Printer.EscDarumaCommands;
 
 namespace Vip.Printer.Demo
 {
@@ -47,22 +46,19 @@ namespace Vip.Printer.Demo
             printer.AlignCenter();
             printer.Append("Impressão de imagem");
             printer.Separator();
-            printer.NewLines(2);
             printer.AlignLeft();
+            printer.NewLine();
             printer.Append("Imagem alinhada a esquerda");
-            printer.NewLines(2);
             printer.Image(Path.Combine(directory, "logo-vip.bmp"));
-            printer.NewLines(2);
+            printer.NewLine();
             printer.AlignCenter();
             printer.Append("Imagem alinhada ao centro");
-            printer.NewLines(2);
             printer.Image(Path.Combine(directory, "logo-vip.bmp"));
-            printer.NewLines(2);
+            printer.NewLine();
             printer.AlignRight();
             printer.Append("Imagem alinhada a direita");
-            printer.NewLines(2);
             printer.Image(Path.Combine(directory, "logo-vip2.bmp"));
-            printer.NewLines(3);
+            printer.NewLines(2);
             printer.AlignLeft();
             printer.Append("Fim de teste");
             printer.PartialPaperCut();
