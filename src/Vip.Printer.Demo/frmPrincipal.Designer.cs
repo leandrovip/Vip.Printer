@@ -42,6 +42,7 @@
             this.btnAutoTeste = new System.Windows.Forms.Button();
             this.lblDireitos = new System.Windows.Forms.Label();
             this.lblLinkGit = new System.Windows.Forms.LinkLabel();
+            this.btnImagem = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnImprimirTeste
@@ -56,7 +57,7 @@
             // 
             // btnGaveta
             // 
-            this.btnGaveta.Location = new System.Drawing.Point(209, 86);
+            this.btnGaveta.Location = new System.Drawing.Point(209, 136);
             this.btnGaveta.Name = "btnGaveta";
             this.btnGaveta.Size = new System.Drawing.Size(133, 44);
             this.btnGaveta.TabIndex = 0;
@@ -88,7 +89,7 @@
             // 
             // btnCodigoDeBarras
             // 
-            this.btnCodigoDeBarras.Location = new System.Drawing.Point(209, 136);
+            this.btnCodigoDeBarras.Location = new System.Drawing.Point(209, 186);
             this.btnCodigoDeBarras.Name = "btnCodigoDeBarras";
             this.btnCodigoDeBarras.Size = new System.Drawing.Size(133, 44);
             this.btnCodigoDeBarras.TabIndex = 2;
@@ -109,7 +110,7 @@
             // btnInicializar
             // 
             this.btnInicializar.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.btnInicializar.Location = new System.Drawing.Point(209, 186);
+            this.btnInicializar.Location = new System.Drawing.Point(209, 236);
             this.btnInicializar.Name = "btnInicializar";
             this.btnInicializar.Size = new System.Drawing.Size(133, 44);
             this.btnInicializar.TabIndex = 4;
@@ -187,6 +188,16 @@
             this.lblLinkGit.Text = "github.com/leandrovip";
             this.lblLinkGit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLinkGit_LinkClicked);
             // 
+            // btnImagem
+            // 
+            this.btnImagem.Location = new System.Drawing.Point(209, 86);
+            this.btnImagem.Name = "btnImagem";
+            this.btnImagem.Size = new System.Drawing.Size(133, 44);
+            this.btnImagem.TabIndex = 0;
+            this.btnImagem.Text = "Imprimir Imagem";
+            this.btnImagem.UseVisualStyleBackColor = true;
+            this.btnImagem.Click += new System.EventHandler(this.btnImagem_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -202,6 +213,7 @@
             this.Controls.Add(this.btnCodigoDeBarras);
             this.Controls.Add(this.btnQrCode);
             this.Controls.Add(this.btnSair);
+            this.Controls.Add(this.btnImagem);
             this.Controls.Add(this.btnGaveta);
             this.Controls.Add(this.btnAutoTeste);
             this.Controls.Add(this.btnImprimirTeste);
@@ -232,5 +244,6 @@
         private System.Windows.Forms.Button btnAutoTeste;
         private System.Windows.Forms.Label lblDireitos;
         private System.Windows.Forms.LinkLabel lblLinkGit;
+        private System.Windows.Forms.Button btnImagem;
     }
 }

@@ -3,7 +3,7 @@ using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscPosCommands
 {
-    public class FontWidth : IFontWidth
+    internal class FontWidth : IFontWidth
     {
         public byte[] Normal()
         {

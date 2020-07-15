@@ -3,7 +3,7 @@ using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscDarumaCommands
 {
-    public class BarCode : IBarCode
+    internal class BarCode : IBarCode
     {
         public byte[] Code128(string code)
         {

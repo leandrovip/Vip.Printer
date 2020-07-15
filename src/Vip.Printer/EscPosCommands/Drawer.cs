@@ -2,7 +2,7 @@
 
 namespace Vip.Printer.EscPosCommands
 {
-    public class Drawer : IDrawer
+    internal class Drawer : IDrawer
     {
         public byte[] Open()
         {

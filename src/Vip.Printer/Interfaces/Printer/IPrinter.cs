@@ -1,4 +1,6 @@
-﻿using Vip.Printer.Enums;
+﻿using System.Drawing;
+using System.IO;
+using Vip.Printer.Enums;
 
 namespace Vip.Printer.Interfaces.Printer
 {
@@ -72,6 +74,15 @@ namespace Vip.Printer.Interfaces.Printer
         void QrCode(string qrData);
         void QrCode(string qrData, QrCodeSize qrCodeSize);
 
+        #endregion
+
+        #region Image
+
+        void Image(string path, bool highDensity);
+        void Image(Stream stream, bool highDensity);
+        void Image(byte[] bytes, bool highDensity);
+        void Image(Image image, bool highDensity);
+        
         #endregion
 
         #region BarCode

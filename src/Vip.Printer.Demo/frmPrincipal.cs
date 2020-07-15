@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using Vip.Printer.Enums;
+using Vip.Printer.EscDarumaCommands;
 
 namespace Vip.Printer.Demo
 {
@@ -33,6 +35,36 @@ namespace Vip.Printer.Demo
             var printer = new Printer(txtImpressora.Text, ObterTipo());
 
             printer.TestPrinter();
+            printer.PartialPaperCut();
+            printer.PrintDocument();
+        }
+
+        private void btnImagem_Click(object sender, EventArgs e)
+        {
+            var directory = Path.Combine(Directory.GetCurrentDirectory(), "images");
+
+            var printer = new Printer(txtImpressora.Text, ObterTipo());
+            printer.AlignCenter();
+            printer.Append("Impressão de imagem");
+            printer.Separator();
+            printer.NewLines(2);
+            printer.AlignLeft();
+            printer.Append("Imagem alinhada a esquerda");
+            printer.NewLines(2);
+            printer.Image(Path.Combine(directory, "logo-vip.bmp"));
+            printer.NewLines(2);
+            printer.AlignCenter();
+            printer.Append("Imagem alinhada ao centro");
+            printer.NewLines(2);
+            printer.Image(Path.Combine(directory, "logo-vip.bmp"));
+            printer.NewLines(2);
+            printer.AlignRight();
+            printer.Append("Imagem alinhada a direita");
+            printer.NewLines(2);
+            printer.Image(Path.Combine(directory, "logo-vip2.bmp"));
+            printer.NewLines(3);
+            printer.AlignLeft();
+            printer.Append("Fim de teste");
             printer.PartialPaperCut();
             printer.PrintDocument();
         }

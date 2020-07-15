@@ -29,6 +29,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Vip.Printer.Enums;
 using Vip.Printer.EscBemaCommands;
@@ -37,6 +38,7 @@ using Vip.Printer.EscPosCommands;
 using Vip.Printer.Helper;
 using Vip.Printer.Interfaces.Command;
 using Vip.Printer.Interfaces.Printer;
+using Image = System.Drawing.Image;
 
 namespace Vip.Printer
 {
@@ -123,6 +125,11 @@ namespace Vip.Printer
             AppendString(value, true);
         }
 
+        public void AppendWithoutLf(string value)
+        {
+            AppendString(value, false);
+        }
+
         public void Append(byte[] value)
         {
             if (value == null)
@@ -132,11 +139,6 @@ namespace Vip.Printer
             if (_buffer != null) list.AddRange(_buffer);
             list.AddRange(value);
             _buffer = list.ToArray();
-        }
-
-        public void AppendWithoutLf(string value)
-        {
-            AppendString(value, false);
         }
 
         private void AppendString(string value, bool useLf)
@@ -363,6 +365,34 @@ namespace Vip.Printer
         public void QrCode(string qrData, QrCodeSize qrCodeSize)
         {
             Append(_command.QrCode.Print(qrData, qrCodeSize));
+        }
+
+        #endregion
+
+        #region Image
+
+        public void Image(string path, bool highDensity = true)
+        {
+            if (!File.Exists(path))
+                throw new Exception("Image file not found");
+
+            using (var image = System.Drawing.Image.FromFile(path)) Append(_command.Image.Print(image, highDensity));
+        }
+
+        public void Image(Stream stream, bool highDensity = true)
+        {
+            using (var image = System.Drawing.Image.FromStream(stream)) Append(_command.Image.Print(image, highDensity));
+        }
+
+        public void Image(byte[] bytes, bool highDensity = true)
+        {
+            using (var ms = new MemoryStream(bytes))
+                Append(_command.Image.Print(System.Drawing.Image.FromStream(ms), highDensity));
+        }
+
+        public void Image(Image image, bool highDensity = true)
+        {
+            Append(_command.Image.Print(image, highDensity));
         }
 
         #endregion

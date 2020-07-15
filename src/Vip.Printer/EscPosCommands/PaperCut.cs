@@ -3,7 +3,7 @@ using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscPosCommands
 {
-    public class PaperCut : IPaperCut
+    internal class PaperCut : IPaperCut
     {
         public byte[] Full()
         {
