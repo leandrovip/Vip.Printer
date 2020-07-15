@@ -75,7 +75,7 @@ namespace Vip.Printer.Demo
             printer.Append("Teste de Código de Barras");
             printer.Separator();
             printer.Append("Code 128");
-            printer.Code128("35190361099008000141599000022490004885145710");
+            printer.Code128("3519036109900800014159");
             printer.Append("Code  39");
             printer.Code39("TESTE");
             printer.Append("Fim de Teste");

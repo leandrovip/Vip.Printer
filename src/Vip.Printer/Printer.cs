@@ -207,9 +207,9 @@ namespace Vip.Printer
             Separator();
 
             DoubleWidth2();
-            Append("Largura da Fonte 2");
+            Append("Largura Fonte 2");
             DoubleWidth3();
-            Append("Largura da Fonte 3");
+            Append("Largura Fonte 3");
             NormalWidth();
             Append("Largura normal");
             Separator();
@@ -222,8 +222,8 @@ namespace Vip.Printer
             Append("Texto alinhado à esquerda");
             NewLines(3);
             Append("Final de Teste :)");
-            NewLines(3);
             Separator();
+            NewLine();
         }
 
         #region FontMode
