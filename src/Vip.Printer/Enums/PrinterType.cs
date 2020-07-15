@@ -2,8 +2,8 @@
 {
     public enum PrinterType
     {
-        Bematech,
-        Epson,
-        Daruma
+        Epson = 0,
+        Bematech = 1,
+        Daruma = 2
     }
 }
