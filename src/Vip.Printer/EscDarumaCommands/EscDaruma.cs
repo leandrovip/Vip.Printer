@@ -1,5 +1,4 @@
 ﻿using Vip.Printer.Enums;
-using Vip.Printer.EscPosCommands;
 using Vip.Printer.Extensions;
 using Vip.Printer.Interfaces.Command;
 
