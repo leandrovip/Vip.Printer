@@ -58,9 +58,10 @@ namespace Vip.Printer.Demo
             printer.AlignRight();
             printer.WriteLine("Imagem alinhada a direita");
             printer.Image(Path.Combine(directory, "logo-vip2.bmp"));
-            printer.NewLines(2);
+            printer.NewLine();
             printer.AlignLeft();
             printer.WriteLine("Fim de teste");
+            printer.NewLines(3);
             printer.PartialPaperCut();
             printer.PrintDocument();
         }
