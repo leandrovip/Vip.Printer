@@ -45,7 +45,7 @@ namespace Vip.Printer.EscDarumaCommands
             return FontMode.Condensed(PrinterModeState.On)
                 .AddBytes(new string('-', ColsCondensed))
                 .AddBytes(FontMode.Condensed(PrinterModeState.Off))
-                .AddCrLF();
+                .AddLF();
         }
 
         public byte[] AutoTest()
