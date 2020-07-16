@@ -39,7 +39,7 @@ namespace Vip.Printer.Extensions
 
 			var list = new List<byte>();
 			list.AddRange(bytes);
-			list.AddRange(Encoding.GetEncoding(850).GetBytes(value));
+			list.AddRange(Encoding.GetEncoding("IBM860").GetBytes(value));
 			return list.ToArray();
 		}
 

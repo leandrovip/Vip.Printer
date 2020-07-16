@@ -6,7 +6,7 @@ using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscDarumaCommands
 {
-    public class QrCode : IQrCode
+    internal class QrCode : IQrCode
     {
         private static byte[] Size(QrCodeSize size)
         {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using Vip.Printer.Enums;
 
@@ -37,6 +38,33 @@ namespace Vip.Printer.Demo
             printer.PrintDocument();
         }
 
+        private void btnImagem_Click(object sender, EventArgs e)
+        {
+            var directory = Path.Combine(Directory.GetCurrentDirectory(), "images");
+
+            var printer = new Printer(txtImpressora.Text, ObterTipo());
+            printer.AlignCenter();
+            printer.WriteLine("Impressão de imagem");
+            printer.Separator();
+            printer.AlignLeft();
+            printer.NewLine();
+            printer.WriteLine("Imagem alinhada a esquerda");
+            printer.Image(Path.Combine(directory, "logo-vip.bmp"));
+            printer.NewLine();
+            printer.AlignCenter();
+            printer.WriteLine("Imagem alinhada ao centro");
+            printer.Image(Path.Combine(directory, "logo-vip.bmp"));
+            printer.NewLine();
+            printer.AlignRight();
+            printer.WriteLine("Imagem alinhada a direita");
+            printer.Image(Path.Combine(directory, "logo-vip2.bmp"));
+            printer.NewLines(2);
+            printer.AlignLeft();
+            printer.WriteLine("Fim de teste");
+            printer.PartialPaperCut();
+            printer.PrintDocument();
+        }
+
         private void btnGaveta_Click(object sender, EventArgs e)
         {
             var printer = new Printer(txtImpressora.Text, ObterTipo());
@@ -52,13 +80,13 @@ namespace Vip.Printer.Demo
             printer.AlignCenter();
             printer.BoldMode("Teste de QRCode");
             printer.Separator();
-            printer.Append("QrCode 1");
+            printer.WriteLine("QrCode 1");
             printer.QrCode(stringQrCode);
             printer.NewLine();
-            printer.Append("QrCode 2");
+            printer.WriteLine("QrCode 2");
             printer.QrCode(stringQrCode, QrCodeSize.Size1);
             printer.NewLine();
-            printer.Append("QrCode 3");
+            printer.WriteLine("QrCode 3");
             printer.QrCode(stringQrCode, QrCodeSize.Size2);
             printer.NewLine();
             printer.BoldMode("Fim de Teste");
@@ -72,13 +100,13 @@ namespace Vip.Printer.Demo
         private void btnCodigoDeBarras_Click(object sender, EventArgs e)
         {
             var printer = new Printer(txtImpressora.Text, ObterTipo());
-            printer.Append("Teste de Código de Barras");
+            printer.WriteLine("Teste de Código de Barras");
             printer.Separator();
-            printer.Append("Code 128");
+            printer.WriteLine("Code 128");
             printer.Code128("3519036109900800014159");
-            printer.Append("Code  39");
+            printer.WriteLine("Code  39");
             printer.Code39("TESTE");
-            printer.Append("Fim de Teste");
+            printer.WriteLine("Fim de Teste");
             printer.NewLines(5);
             printer.PartialPaperCut();
 
@@ -89,10 +117,10 @@ namespace Vip.Printer.Demo
         {
             var printer = new Printer(txtImpressora.Text, ObterTipo());
 
-            printer.Append("EAN 13");
+            printer.WriteLine("EAN 13");
             printer.Ean13("7898173500051");
             printer.NewLine();
-            printer.Append("Fim de Teste");
+            printer.WriteLine("Fim de Teste");
             printer.NewLines(5);
             printer.PartialPaperCut();
 

@@ -29,6 +29,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using Vip.Printer.Enums;
 using Vip.Printer.EscBemaCommands;
@@ -37,6 +38,7 @@ using Vip.Printer.EscPosCommands;
 using Vip.Printer.Helper;
 using Vip.Printer.Interfaces.Command;
 using Vip.Printer.Interfaces.Printer;
+using Image = System.Drawing.Image;
 
 namespace Vip.Printer
 {
@@ -118,12 +120,12 @@ namespace Vip.Printer
                 throw new ArgumentException("Não foi possível acessar a impressora: " + _printerName);
         }
 
-        public void Append(string value)
+        public void Write(string value)
         {
-            AppendString(value, true);
+            WriteString(value, false);
         }
 
-        public void Append(byte[] value)
+        public void Write(byte[] value)
         {
             if (value == null)
                 return;
@@ -134,12 +136,12 @@ namespace Vip.Printer
             _buffer = list.ToArray();
         }
 
-        public void AppendWithoutLf(string value)
+        public void WriteLine(string value)
         {
-            AppendString(value, false);
+            WriteString(value, true);
         }
 
-        private void AppendString(string value, bool useLf)
+        private void WriteString(string value, bool useLf)
         {
             if (string.IsNullOrEmpty(value))
                 return;
@@ -159,7 +161,7 @@ namespace Vip.Printer
 
         public void NewLine()
         {
-            Append("\r");
+            WriteLine("\r");
         }
 
         public void NewLines(int lines)
@@ -173,55 +175,77 @@ namespace Vip.Printer
             _buffer = null;
         }
 
+        #region Obsolete Methods
+
+        [Obsolete("This method changed to WriteLine")]
+        public void Append(string value)
+        {
+            WriteLine(value);
+        }
+
+        [Obsolete("This method changed to Write")]
+        public void AppendWithoutLf(string value)
+        {
+            Write(value);
+        }
+
+        [Obsolete("This method changed to Write")]
+        public void Append(byte[] value)
+        {
+            Write(value);
+        }
+
+        #endregion
+
         #endregion
 
         #region Commands
 
         public void Separator()
         {
-            Append(_command.Separator());
+            Write(_command.Separator());
         }
 
         public void AutoTest()
         {
-            Append(_command.AutoTest());
+            Write(_command.AutoTest());
         }
 
         public void TestPrinter()
         {
             AlignLeft();
-            Append("TESTE DE IMPRESSÃO NORMAL - 48 COLUNAS");
-            Append("....+....1....+....2....+....3....+....4....+...");
+            WriteLine("TESTE DE IMPRESSÃO NORMAL - 48 COLUNAS");
+            WriteLine("....+....1....+....2....+....3....+....4....+...");
             Separator();
-            Append("Texto Normal");
+            WriteLine("Texto Normal");
             ItalicMode("Texto Itálico");
             BoldMode("Texto Negrito");
             UnderlineMode("Texto Sublinhado");
             ExpandedMode(PrinterModeState.On);
-            Append("Texto Expandido");
-            Append("....+....1....+....2....");
+            WriteLine("Texto Expandido");
+            WriteLine("....+....1....+....2....");
             ExpandedMode(PrinterModeState.Off);
             CondensedMode(PrinterModeState.On);
-            Append("Texto condensado");
+            WriteLine("Texto condensado");
             CondensedMode(PrinterModeState.Off);
             Separator();
 
             DoubleWidth2();
-            Append("Largura Fonte 2");
+            WriteLine("Largura Fonte 2");
             DoubleWidth3();
-            Append("Largura Fonte 3");
+            WriteLine("Largura Fonte 3");
             NormalWidth();
-            Append("Largura normal");
+            WriteLine("Largura normal");
             Separator();
 
             AlignRight();
-            Append("Texto alinhado à direita");
+            WriteLine("Texto alinhado à direita");
             AlignCenter();
-            Append("Texto alinhado ao centro");
+            WriteLine("Texto alinhado ao centro");
             AlignLeft();
-            Append("Texto alinhado à esquerda");
+            WriteLine("Texto alinhado à esquerda");
             NewLines(3);
-            Append("Final de Teste :)");
+            WriteLine("Final de Teste :)");
             Separator();
             NewLine();
         }
@@ -230,52 +254,52 @@ namespace Vip.Printer
 
         public void ItalicMode(string value)
         {
-            Append(_command.FontMode.Italic(value));
+            Write(_command.FontMode.Italic(value));
         }
 
         public void ItalicMode(PrinterModeState state)
         {
-            Append(_command.FontMode.Italic(state));
+            Write(_command.FontMode.Italic(state));
         }
 
         public void BoldMode(string value)
         {
-            Append(_command.FontMode.Bold(value));
+            Write(_command.FontMode.Bold(value));
         }
 
         public void BoldMode(PrinterModeState state)
         {
-            Append(_command.FontMode.Bold(state));
+            Write(_command.FontMode.Bold(state));
         }
 
         public void UnderlineMode(string value)
         {
-            Append(_command.FontMode.Underline(value));
+            Write(_command.FontMode.Underline(value));
         }
 
         public void UnderlineMode(PrinterModeState state)
         {
-            Append(_command.FontMode.Underline(state));
+            Write(_command.FontMode.Underline(state));
         }
 
         public void ExpandedMode(string value)
         {
-            Append(_command.FontMode.Expanded(value));
+            Write(_command.FontMode.Expanded(value));
         }
 
         public void ExpandedMode(PrinterModeState state)
         {
-            Append(_command.FontMode.Expanded(state));
+            Write(_command.FontMode.Expanded(state));
         }
 
         public void CondensedMode(string value)
         {
-            Append(_command.FontMode.Condensed(value));
+            Write(_command.FontMode.Condensed(value));
         }
 
         public void CondensedMode(PrinterModeState state)
         {
-            Append(_command.FontMode.Condensed(state));
+            Write(_command.FontMode.Condensed(state));
         }
 
         #endregion
@@ -284,17 +308,17 @@ namespace Vip.Printer
 
         public void NormalWidth()
         {
-            Append(_command.FontWidth.Normal());
+            Write(_command.FontWidth.Normal());
         }
 
         public void DoubleWidth2()
         {
-            Append(_command.FontWidth.DoubleWidth2());
+            Write(_command.FontWidth.DoubleWidth2());
         }
 
         public void DoubleWidth3()
         {
-            Append(_command.FontWidth.DoubleWidth3());
+            Write(_command.FontWidth.DoubleWidth3());
         }
 
         #endregion
@@ -303,17 +327,17 @@ namespace Vip.Printer
 
         public void AlignLeft()
         {
-            Append(_command.Alignment.Left());
+            Write(_command.Alignment.Left());
         }
 
         public void AlignRight()
         {
-            Append(_command.Alignment.Right());
+            Write(_command.Alignment.Right());
         }
 
         public void AlignCenter()
         {
-            Append(_command.Alignment.Center());
+            Write(_command.Alignment.Center());
         }
 
         #endregion
@@ -322,7 +346,7 @@ namespace Vip.Printer
 
         public void FullPaperCut()
         {
-            Append(_command.PaperCut.Full());
+            Write(_command.PaperCut.Full());
         }
 
         public void FullPaperCut(bool predicate)
@@ -333,7 +357,7 @@ namespace Vip.Printer
 
         public void PartialPaperCut()
         {
-            Append(_command.PaperCut.Partial());
+            Write(_command.PaperCut.Partial());
         }
 
         public void PartialPaperCut(bool predicate)
@@ -348,7 +372,7 @@ namespace Vip.Printer
 
         public void OpenDrawer()
         {
-            Append(_command.Drawer.Open());
+            Write(_command.Drawer.Open());
         }
 
         #endregion
@@ -357,12 +381,40 @@ namespace Vip.Printer
 
         public void QrCode(string qrData)
         {
-            Append(_command.QrCode.Print(qrData));
+            Write(_command.QrCode.Print(qrData));
         }
 
         public void QrCode(string qrData, QrCodeSize qrCodeSize)
         {
-            Append(_command.QrCode.Print(qrData, qrCodeSize));
+            Write(_command.QrCode.Print(qrData, qrCodeSize));
+        }
+
+        #endregion
+
+        #region Image
+
+        public void Image(string path, bool highDensity = true)
+        {
+            if (!File.Exists(path))
+                throw new Exception("Image file not found");
+
+            using (var image = System.Drawing.Image.FromFile(path)) Write(_command.Image.Print(image, highDensity));
+        }
+
+        public void Image(Stream stream, bool highDensity = true)
+        {
+            using (var image = System.Drawing.Image.FromStream(stream)) Write(_command.Image.Print(image, highDensity));
+        }
+
+        public void Image(byte[] bytes, bool highDensity = true)
+        {
+            using (var ms = new MemoryStream(bytes))
+                Write(_command.Image.Print(System.Drawing.Image.FromStream(ms), highDensity));
+        }
+
+        public void Image(Image image, bool highDensity = true)
+        {
+            Write(_command.Image.Print(image, highDensity));
         }
 
         #endregion
@@ -371,17 +423,17 @@ namespace Vip.Printer
 
         public void Code128(string code)
         {
-            Append(_command.BarCode.Code128(code));
+            Write(_command.BarCode.Code128(code));
         }
 
         public void Code39(string code)
         {
-            Append(_command.BarCode.Code39(code));
+            Write(_command.BarCode.Code39(code));
         }
 
         public void Ean13(string code)
         {
-            Append(_command.BarCode.Ean13(code));
+            Write(_command.BarCode.Ean13(code));
         }
 
         #endregion

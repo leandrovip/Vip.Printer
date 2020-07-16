@@ -1,4 +1,6 @@
-﻿using Vip.Printer.Enums;
+﻿using System.Drawing;
+using System.IO;
+using Vip.Printer.Enums;
 
 namespace Vip.Printer.Interfaces.Printer
 {
@@ -8,12 +10,16 @@ namespace Vip.Printer.Interfaces.Printer
         int ColsCondensed { get; }
         int ColsExpanded { get; }
         void PrintDocument();
-        void Append(string value);
-        void Append(byte[] value);
-        void AppendWithoutLf(string value);
+        void Write(string value);
+        void Write(byte[] value);
+        void WriteLine(string value);
         void NewLine();
         void NewLines(int lines);
         void Clear();
+
+        void Append(string value);
+        void Append(byte[] value);
+        void AppendWithoutLf(string value);
 
         #region Commands
 
@@ -72,6 +78,15 @@ namespace Vip.Printer.Interfaces.Printer
         void QrCode(string qrData);
         void QrCode(string qrData, QrCodeSize qrCodeSize);
 
+        #endregion
+
+        #region Image
+
+        void Image(string path, bool highDensity);
+        void Image(Stream stream, bool highDensity);
+        void Image(byte[] bytes, bool highDensity);
+        void Image(Image image, bool highDensity);
+        
         #endregion
 
         #region BarCode

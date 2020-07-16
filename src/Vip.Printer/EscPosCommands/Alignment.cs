@@ -3,7 +3,7 @@ using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscPosCommands
 {
-    public class Alignment : IAlignment
+    internal class Alignment : IAlignment
     {
         public byte[] Left()
         {
