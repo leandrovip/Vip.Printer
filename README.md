@@ -61,6 +61,7 @@ printer.PrintDocument();
 - Tamanho da Fonte
 - Abertura de Gaveta (dinheiro)
 - QRCode
+- Imagem
 - Código de Barras (EAN 13, EAN 128, CODE39)
 - Guilhotina
 - Propriedades com o número limite de colunas
@@ -76,20 +77,27 @@ printer.PrintDocument();
 **_EscBema_**
 
 * [x] Bematech MP-2500
+* [x] Bematech MP-4000
 * [x] Bematech MP-4200
 
 **_EscDaruma_**
 
 * [x] Daruma DR-700
+* [x] Daruma DR-800
 
 **_EscPos_**
 
 * [x] Bematech MP-2500
 * [x] Bematech MP-2800
+* [x] Bematech MP-4000
 * [x] Bematech MP-4200
+* [x] Dimep D-Print Dual
+* [x] Elgin I7
 * [x] Elgin I9
 * [x] Elgin VOX
+* [x] Evadin Ep26m
 * [x] Epson TM-T20
+* [x] Print iD (Control iD)
 * [x] Tanca TP-650
 * [x] Tanca TP-550
 * [x] Jetway JP-880
