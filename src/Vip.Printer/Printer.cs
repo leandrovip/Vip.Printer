@@ -161,7 +161,7 @@ namespace Vip.Printer
 
         public void NewLine()
         {
-            WriteLine("\r");
+            WriteLine("\n");
         }
 
         public void NewLines(int lines)
