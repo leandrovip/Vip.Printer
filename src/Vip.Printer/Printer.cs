@@ -50,6 +50,7 @@ namespace Vip.Printer
         private readonly string _printerName;
         private readonly IPrintCommand _command;
         private readonly PrinterType _printerType;
+        private readonly Encoding _encoding;
 
         #endregion
 
@@ -63,10 +64,12 @@ namespace Vip.Printer
         /// <param name="colsNormal">Number of columns for normal mode print</param>
         /// <param name="colsCondensed">Number of columns for condensed mode print</param>
         /// <param name="colsExpanded">Number of columns for expanded mode print</param>
-        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded)
+        /// <param name="encoding">Custom encoding</param>
+        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded, Encoding encoding)
         {
             _printerName = string.IsNullOrEmpty(printerName) ? "temp.prn" : printerName.Trim();
             _printerType = type;
+            _encoding = encoding;
 
             #region Select printer type
 
@@ -98,8 +101,26 @@ namespace Vip.Printer
         ///     Initializes a new instance of the <see cref="Printer" /> class.
         /// </summary>
         /// <param name="printerName">Printer name, shared name or port of printer install</param>
+        /// <param name="type">Command set of type printer</param>
+        /// <param name="colsNormal">Number of columns for normal mode print</param>
+        /// <param name="colsCondensed">Number of columns for condensed mode print</param>
+        /// <param name="colsExpanded">Number of columns for expanded mode print</param>
+        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded) : this(printerName, type, colsNormal, colsCondensed, colsExpanded, null) { }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Printer" /> class.
+        /// </summary>
+        /// <param name="printerName">Printer name, shared name or port of printer install</param>
+        /// <param name="type">Command set of type printer</param>
+        /// <param name="encoding">Custom encoding</param>
+        public Printer(string printerName, PrinterType type, Encoding encoding) : this(printerName, type, 0, 0, 0, encoding) { }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Printer" /> class.
+        /// </summary>
+        /// <param name="printerName">Printer name, shared name or port of printer install</param>
         /// <param name="type">>Command set of type printer</param>
-        public Printer(string printerName, PrinterType type) : this(printerName, type, 0, 0, 0) { }
+        public Printer(string printerName, PrinterType type) : this(printerName, type, 0, 0, 0, null) { }
 
         #endregion
 
@@ -151,9 +172,11 @@ namespace Vip.Printer
             var list = new List<byte>();
             if (_buffer != null) list.AddRange(_buffer);
 
-            var bytes = _printerType == PrinterType.Bematech
-                ? Encoding.GetEncoding(850).GetBytes(value)
-                : Encoding.GetEncoding("IBM860").GetBytes(value);
+            var bytes = _encoding != null
+                ? _encoding.GetBytes(value)
+                : _printerType == PrinterType.Bematech
+                    ? Encoding.GetEncoding(850).GetBytes(value)
+                    : Encoding.GetEncoding("IBM860").GetBytes(value);
 
             list.AddRange(bytes);
             _buffer = list.ToArray();
