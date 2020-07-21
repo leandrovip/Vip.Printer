@@ -129,34 +129,6 @@ namespace Vip.Printer.Helper
             return retval;
         }
 
-        public static bool SendStringToPrinter(string szPrinterName, string szString)
-        {
-            // How many characters are in the string?
-            var dwCount = szString.Length;
-
-            // Assume that the printer is expecting ANSI text, and then convert
-            // the string to ANSI text.
-            var pBytes = Marshal.StringToCoTaskMemAnsi(szString);
-
-            // Send the converted ANSI string to the printer.
-            var result = SendBytesToPrinter(szPrinterName, pBytes, dwCount);
-            Marshal.FreeCoTaskMem(pBytes);
-
-            return result;
-        }
-
-        //if you want a wrapper function for you strings :
-        public static bool SendAsciiToPrinter(string szPrinterName, string data)
-        {
-            var retval = false;
-
-            //if  you are using UTF-8 and get wrong values in qrcode printing, you must use ASCII instead.
-            //retval = SendBytesToPrinter(szPrinterName, Encoding.UTF8.GetBytes(data));
-            retval = SendBytesToPrinter(szPrinterName, Encoding.ASCII.GetBytes(data));
-
-            return retval;
-        }
-
         #endregion
     }
 }
