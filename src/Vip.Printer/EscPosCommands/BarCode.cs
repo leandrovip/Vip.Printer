@@ -13,7 +13,7 @@ namespace Vip.Printer.EscPosCommands
                 .AddBytes(new byte[] {29, 72, 0}) // If print code informed
                 .AddBytes(new byte[] {29, 107, 73}) // printCode
                 .AddBytes(new[] {(byte) (code.Length + 2)})
-                .AddBytes(new[] {'{'.ToByte(), 'C'.ToByte()})
+                .AddBytes(new byte[] {123, 66})
                 .AddBytes(code);
         }
 
