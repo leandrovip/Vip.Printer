@@ -62,7 +62,7 @@ printer.PrintDocument();
 - Abertura de Gaveta (dinheiro)
 - QRCode
 - Imagem
-- Código de Barras (EAN 13, EAN 128, CODE39)
+- Código de Barras (EAN13, CODE128, CODE39)
 - Guilhotina
 - Propriedades com o número limite de colunas
 
@@ -102,7 +102,10 @@ printer.PrintDocument();
 * [x] Tanca TP-550
 * [x] Jetway JP-880
 
+## Release Notes
+
+- **20/10/2020 - v1.0.20**
+- Corrige impressão do código de barras 'CODE128' no set de comandos EscPos
+
 # Licença
 MIT
-
-
