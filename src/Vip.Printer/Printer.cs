@@ -132,13 +132,14 @@ namespace Vip.Printer
 
         public int ColsExpanded { get; private set; }
 
-        public void PrintDocument()
+        public void PrintDocument(int copies = 1)
         {
-            if (_buffer == null)
-                return;
+            if (_buffer == null) return;
+            if (copies <= 0) copies = 1;
 
-            if (!RawPrinterHelper.SendBytesToPrinter(_printerName, _buffer))
-                throw new ArgumentException("Não foi possível acessar a impressora: " + _printerName);
+            for (var i = 0; i < copies; i++)
+                if (!RawPrinterHelper.SendBytesToPrinter(_printerName, _buffer))
+                    throw new ArgumentException("Não foi possível acessar a impressora: " + _printerName);
         }
 
         public void Write(string value)

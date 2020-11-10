@@ -5,7 +5,7 @@
 		<Company>VIP Soluções</Company>
 		<Copyright>VIP Soluções - Copyright ©  2019</Copyright>
 		<Authors>Leandro Ferreira</Authors>
-		<Version>1.0.20</Version>
+		<Version>1.0.21</Version>
 		<Tags>vip printer</Tags>
 	</PropertyGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
