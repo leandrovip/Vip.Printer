@@ -65,6 +65,7 @@ printer.PrintDocument();
 - Código de Barras (EAN13, CODE128, CODE39)
 - Guilhotina
 - Propriedades com o número limite de colunas
+- Número de cópias
 
 #### Comandos Implementados
 
@@ -104,6 +105,8 @@ printer.PrintDocument();
 
 ## Release Notes
 
+- **10/11/2020 - v1.0.21**
+- Adiciona o parâmetro 'copies' no método PrintDocumet para informar a quantidade de cópias a serem impressas
 - **20/10/2020 - v1.0.20**
 - Corrige impressão do código de barras 'CODE128' no set de comandos EscPos
 
