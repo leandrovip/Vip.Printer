@@ -152,10 +152,7 @@ namespace Vip.Printer.Demo
 
         #region Métodos
 
-        private PrinterType ObterTipo()
-        {
-            return cboModelo.Text == "Bematech" ? PrinterType.Bematech : cboModelo.Text == "Daruma" ? PrinterType.Daruma : PrinterType.Epson;
-        }
+        private PrinterType ObterTipo() => cboModelo.Text == "Bematech" ? PrinterType.Bematech : cboModelo.Text == "Daruma" ? PrinterType.Daruma : PrinterType.Epson;
 
         #endregion
     }

@@ -105,6 +105,8 @@ printer.PrintDocument();
 
 ## Release Notes
 
+- **05/02/2021 - v1.0.22**
+- Corrige o método NewLine
 - **10/11/2020 - v1.0.21**
 - Adiciona o parâmetro 'copies' no método PrintDocumet para informar a quantidade de cópias a serem impressas
 - **20/10/2020 - v1.0.20**
