@@ -185,7 +185,7 @@ namespace Vip.Printer
 
         public void NewLine()
         {
-            WriteLine("\n");
+            Write("\n");
         }
 
         public void NewLines(int lines)
