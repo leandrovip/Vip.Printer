@@ -81,7 +81,7 @@ printer.PrintDocument();
 | Bematech MP-4800   	|✅   	   |         	|           	|
 | Daruma DR-700      	|        	|         	|✅         	|
 | Daruma DR-800      	|       	|         	|✅         	|
-| Dimpe D-Print DUAL 	|✅     	|         	|           	|
+| Dimep D-Print DUAL 	|✅     	|         	|           	|
 | Elgin i7           	|✅     	|         	|           	|
 | Elgin i9           	|✅     	|         	|           	|
 | Elgin VOX          	|✅     	|         	|           	|
