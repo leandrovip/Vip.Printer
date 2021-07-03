@@ -17,7 +17,7 @@
 
 Biblioteca para realizar impressões (mini-impressoras / impressora não fiscal) utilizando comandos Esc/Bema, Esc/Daruma e Esc/Pos. Possibilita utilizar diversas impressoras e de diversas marcas como Bematech, Elgin, Epson, Sweda, Tanca, Daruma, Jetway, etc.
 
-Dúvidas, sugestões e PR´s são bem vindos, abra uma issue :)
+
 
 ## Pré requisitos
 
@@ -30,7 +30,7 @@ Dúvidas, sugestões e PR´s são bem vindos, abra uma issue :)
 Install-Package Vip.Printer
 ```
 
-## Exemplo de uso
+## Exemplo de uso rápido
 
 ```c#
 using Vip.Printer;
@@ -50,7 +50,7 @@ printer.PartialPaperCut();
 printer.PrintDocument();
 ```
 
-## Funcionalidades
+## Funcionalidades disponíveis
 
 - Alinhamento
 - Negrito
@@ -67,41 +67,32 @@ printer.PrintDocument();
 - Propriedades com o número limite de colunas
 - Número de cópias
 
-#### Comandos Implementados
+## Comandos Implementados
 
 * [x] EscBema
 * [x] EscDaruma
 * [x] EscPos
 
-#### Impressoras testadas
+## Impressoras testadas
 
-**_EscBema_**
-
-* [x] Bematech MP-2500
-* [x] Bematech MP-4000
-* [x] Bematech MP-4200
-
-**_EscDaruma_**
-
-* [x] Daruma DR-700
-* [x] Daruma DR-800
-
-**_EscPos_**
-
-* [x] Bematech MP-2500
-* [x] Bematech MP-2800
-* [x] Bematech MP-4000
-* [x] Bematech MP-4200
-* [x] Dimep D-Print Dual
-* [x] Elgin I7
-* [x] Elgin I9
-* [x] Elgin VOX
-* [x] Evadin Ep26m
-* [x] Epson TM-T20
-* [x] Print iD (Control iD)
-* [x] Tanca TP-650
-* [x] Tanca TP-550
-* [x] Jetway JP-880
+| Marca / Modelo     	| EscPos 	| EscBema 	| EscDaruma 	|
+|--------------------	|--------	|---------	|-----------	|
+| Bematech MP-2500   	|✅       | ✅        |           	|
+| Bematech MP-4000   	|✅   	   | ✅       	|           	|
+| Bematech MP-4200   	|✅   	   | ✅       	|           	|
+| Bematech MP-4800   	|✅   	   |         	|           	|
+| Daruma DR-700      	|        	|         	|✅         	|
+| Daruma DR-800      	|       	|         	|✅         	|
+| Dimpe D-Print DUAL 	|✅     	|         	|           	|
+| Elgin i7           	|✅     	|         	|           	|
+| Elgin i9           	|✅     	|         	|           	|
+| Elgin VOX          	|✅     	|         	|           	|
+| Evadin Ep26m       	|✅     	|         	|           	|
+| Epson TM-20        	|✅     	|         	|           	|
+| ControliD Print iD 	|✅     	|         	|           	|
+| Tanca TP-550       	|✅     	|         	|           	|
+| Tanca TP-650       	|✅     	|         	|           	|
+| Jetway JP-880      	|✅     	|         	|           	|
 
 ## Release Notes
 
