@@ -1,5 +1,5 @@
 
-<h2 align="center"><strong>Vip.Printer</strong> - Impressão em mini-impressoras de um jeito simples e fácil :page_facing_up: :card_index:</h2> 
+<h2 align="center"><strong>Vip.Printer</strong> - Impressão em mini-impressoras de um jeito simples e fácil :card_index:</h2> 
 
 <p align="center">
   <a href="https://raw.githubusercontent.com/leandrovip/Vip.Printer/master/LICENSE">
@@ -15,9 +15,7 @@
   </a>
 </p>
 
-Biblioteca para realizar impressões (mini-impressoras / impressora não fiscal) utilizando comandos Esc/Bema, Esc/Daruma e Esc/Pos. Possibilita utilizar diversas impressoras e de diversas marcas como Bematech, Elgin, Epson, Sweda, Tanca, Daruma, Jetway, etc.
-
-
+Biblioteca para realizar impressões (mini-impressoras / impressora não fiscal) utilizando comandos Esc/Bema, Esc/Daruma e Esc/Pos. Possibilita utilizar diversas impressoras e de diversas marcas como Bematech, Elgin, Epson, Sweda, Tanca, Daruma, Dimep, ControliD, Jetway, etc.
 
 ## Pré requisitos
 
@@ -30,7 +28,7 @@ Biblioteca para realizar impressões (mini-impressoras / impressora não fiscal)
 Install-Package Vip.Printer
 ```
 
-## Exemplo de uso rápido
+## Exemplo prático
 
 ```c#
 using Vip.Printer;
