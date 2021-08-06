@@ -43,7 +43,7 @@ Para instanciar a classe é necessário dois parâmetros:
 
 var printer = new Printer("MP2500", PrinterType.Bematech); 
 
-printer.Append("Meu texto aqui!");
+printer.WriteLine("Meu texto aqui!");
 printer.PartialPaperCut();
 printer.PrintDocument();
 ```
