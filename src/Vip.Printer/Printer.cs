@@ -35,6 +35,7 @@ using Vip.Printer.Enums;
 using Vip.Printer.EscBemaCommands;
 using Vip.Printer.EscDarumaCommands;
 using Vip.Printer.EscPosCommands;
+using Vip.Printer.Extensions;
 using Vip.Printer.Helper;
 using Vip.Printer.Interfaces.Command;
 using Vip.Printer.Interfaces.Printer;
@@ -90,9 +91,9 @@ namespace Vip.Printer
 
             #region Configure number columns
 
-            ColsNomal = colsNormal == 0 ? _command.ColsNomal : colsNormal;
-            ColsCondensed = colsCondensed == 0 ? _command.ColsCondensed : colsCondensed;
-            ColsExpanded = colsExpanded == 0 ? _command.ColsExpanded : colsExpanded;
+            ColsNomal = colsNormal <= 0 ? _command.ColsNomal : colsNormal;
+            ColsCondensed = colsCondensed <= 0 ? _command.ColsCondensed : colsCondensed;
+            ColsExpanded = colsExpanded <= 0 ? _command.ColsExpanded : colsExpanded;
 
             #endregion
         }
@@ -227,7 +228,12 @@ namespace Vip.Printer
 
         public void Separator()
         {
-            Write(_command.Separator());
+            var bytes = _command.FontMode.Condensed(PrinterModeState.On)
+                .AddBytes(new string('-', ColsCondensed))
+                .AddBytes(_command.FontMode.Condensed(PrinterModeState.Off))
+                .AddLF();
+
+            Write(bytes);
         }
 
         public void AutoTest()
@@ -254,6 +260,16 @@ namespace Vip.Printer
             CondensedMode(PrinterModeState.Off);
             Separator();
 
+            NewLine();
+            WriteLine("COLUNAS");
+            WriteLine($"NORMAL - {ColsNomal}");
+            WriteLine(new string('-', ColsNomal));
+            WriteLine($"CONDENSADO - {ColsCondensed}");
+            CondensedMode(new string('-', ColsCondensed));
+            WriteLine($"EXPANDIDO - {ColsExpanded}");
+            ExpandedMode(new string('-', ColsExpanded));
+
+            Separator();
             DoubleWidth2();
             WriteLine("Largura Fonte 2");
             DoubleWidth3();

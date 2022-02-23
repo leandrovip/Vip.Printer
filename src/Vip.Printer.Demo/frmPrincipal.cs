@@ -31,8 +31,7 @@ namespace Vip.Printer.Demo
 
         private void btnTexto_Click(object sender, EventArgs e)
         {
-            var printer = new Printer(txtImpressora.Text, ObterTipo());
-
+            var printer = ObterPrinter();
             printer.TestPrinter();
             printer.PartialPaperCut();
             printer.PrintDocument();
@@ -42,7 +41,7 @@ namespace Vip.Printer.Demo
         {
             var directory = Path.Combine(Directory.GetCurrentDirectory(), "images");
 
-            var printer = new Printer(txtImpressora.Text, ObterTipo());
+            var printer = ObterPrinter();
             printer.AlignCenter();
             printer.WriteLine("Impressão de imagem");
             printer.Separator();
@@ -68,16 +67,15 @@ namespace Vip.Printer.Demo
 
         private void btnGaveta_Click(object sender, EventArgs e)
         {
-            var printer = new Printer(txtImpressora.Text, ObterTipo());
+            var printer = ObterPrinter();
             printer.OpenDrawer();
             printer.PrintDocument();
         }
 
         private void btnQrCode_Click(object sender, EventArgs e)
         {
-            var stringQrCode =
-                "35190361099008000141599000022490004885145710|20190315181929|2479.35||K+VRwUKRomWZZcJhaeuJMIWxRb5QKP6Sh6BLzHZdmNdhPOvxo5Xx4oIYqkfA5sB6z4KzBepBLgDrYkeOCzjwVGWhvLA5C72eQzk9emvV6EIk6iXa9XU/HesRJAqqiSqjvvOvhR9orD0tTUj3DjwoZpn8vrSSK1v1nHxJZBah7r5e3FG8P93X47QgHJZXGRR7BSNA8CQ4N/hgEMqXbOCn/4zj0E6y5Xg/JcI09xC6vX+5SmILY2e1zEBIirxKsWpZN/DkXt/su79esaQFBJSgfCerok4kLK/vE54CMjJ//U5bhLRm/ocHuEJbg1Rvf36kpwIXEnPV/zG/luJita36qQ==";
-            var printer = new Printer(txtImpressora.Text, ObterTipo());
+            const string stringQrCode = "35190361099008000141599000022490004885145710|20190315181929|2479.35||K+VRwUKRomWZZcJhaeuJMIWxRb5QKP6Sh6BLzHZdmNdhPOvxo5Xx4oIYqkfA5sB6z4KzBepBLgDrYkeOCzjwVGWhvLA5C72eQzk9emvV6EIk6iXa9XU/HesRJAqqiSqjvvOvhR9orD0tTUj3DjwoZpn8vrSSK1v1nHxJZBah7r5e3FG8P93X47QgHJZXGRR7BSNA8CQ4N/hgEMqXbOCn/4zj0E6y5Xg/JcI09xC6vX+5SmILY2e1zEBIirxKsWpZN/DkXt/su79esaQFBJSgfCerok4kLK/vE54CMjJ//U5bhLRm/ocHuEJbg1Rvf36kpwIXEnPV/zG/luJita36qQ==";
+            var printer = ObterPrinter();
             printer.AlignCenter();
             printer.BoldMode("Teste de QRCode");
             printer.Separator();
@@ -100,7 +98,7 @@ namespace Vip.Printer.Demo
 
         private void btnCodigoDeBarras_Click(object sender, EventArgs e)
         {
-            var printer = new Printer(txtImpressora.Text, ObterTipo());
+            var printer = ObterPrinter();
             printer.WriteLine("Teste de Código de Barras");
             printer.Separator();
             printer.WriteLine("Code 128");
@@ -116,8 +114,7 @@ namespace Vip.Printer.Demo
 
         private void btnCodigoEan13_Click(object sender, EventArgs e)
         {
-            var printer = new Printer(txtImpressora.Text, ObterTipo());
-
+            var printer = ObterPrinter();
             printer.WriteLine("EAN 13");
             printer.Ean13("7898173500051");
             printer.NewLine();
@@ -130,15 +127,14 @@ namespace Vip.Printer.Demo
 
         private void btnInicializar_Click(object sender, EventArgs e)
         {
-            var printer = new Printer(txtImpressora.Text, ObterTipo());
+            var printer = ObterPrinter();
             printer.InitializePrint();
-
             MessageBox.Show("Comando inicialize executado com sucesso!", "Vip.Printer");
         }
 
         private void btnAutoTeste_Click(object sender, EventArgs e)
         {
-            var printer = new Printer(txtImpressora.Text, ObterTipo());
+            var printer = ObterPrinter();
             printer.AutoTest();
             printer.PrintDocument();
         }
@@ -151,6 +147,14 @@ namespace Vip.Printer.Demo
         #endregion
 
         #region Métodos
+
+        private Printer ObterPrinter()
+        {
+            int.TryParse(txtNormal.Text, out var normal);
+            int.TryParse(txtCondensado.Text, out var condensado);
+            int.TryParse(txtExpandido.Text, out var expandido);
+            return new Printer(txtImpressora.Text, ObterTipo(), normal, condensado, expandido);
+        }
 
         private PrinterType ObterTipo() => cboModelo.Text == "Bematech" ? PrinterType.Bematech : cboModelo.Text == "Daruma" ? PrinterType.Daruma : PrinterType.Epson;
 
