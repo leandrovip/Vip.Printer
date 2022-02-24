@@ -1,6 +1,4 @@
-﻿using Vip.Printer.Enums;
-using Vip.Printer.EscPosCommands;
-using Vip.Printer.Extensions;
+﻿using Vip.Printer.EscPosCommands;
 using Vip.Printer.Interfaces.Command;
 
 namespace Vip.Printer.EscBemaCommands
@@ -42,14 +40,6 @@ namespace Vip.Printer.EscBemaCommands
         #endregion
 
         #region Methods
-
-        public byte[] Separator()
-        {
-            return FontMode.Condensed(PrinterModeState.On)
-                .AddBytes(new string('-', ColsCondensed))
-                .AddBytes(FontMode.Condensed(PrinterModeState.Off))
-                .AddLF();
-        }
 
         public byte[] AutoTest()
         {

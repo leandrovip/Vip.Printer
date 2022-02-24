@@ -14,7 +14,6 @@
         IImage Image { get; set; }
         IBarCode BarCode { get; set; }
         IInitializePrint InitializePrint { get; set; }
-        byte[] Separator();
         byte[] AutoTest();
     }
 }
