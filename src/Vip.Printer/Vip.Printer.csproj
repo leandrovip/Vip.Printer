@@ -3,9 +3,9 @@
 		<TargetFrameworks>netstandard2.0</TargetFrameworks>
 		<Description>Biblioteca para realizar impressões (impressora não fiscal) utilizando comandos Esc/Bema, Esc/Daruma e Esc/Pos</Description>
 		<Company>VIP Soluções</Company>
-		<Copyright>VIP Soluções - Copyright ©  2019</Copyright>
+		<Copyright>Copyright © 2019-2022</Copyright>
 		<Authors>Leandro Ferreira</Authors>
-		<Version>1.0.22</Version>
+		<Version>1.0.23</Version>
 		<Tags>vip printer</Tags>
 	</PropertyGroup>
 	<ItemGroup>

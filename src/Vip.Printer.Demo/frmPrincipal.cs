@@ -22,6 +22,7 @@ namespace Vip.Printer.Demo
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
             cboModelo.SelectedItem = cboModelo.Items[0];
+            cboProtocolo.SelectedItem = cboProtocolo.Items[0];
         }
 
         private void lblLinkGit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -74,7 +75,8 @@ namespace Vip.Printer.Demo
 
         private void btnQrCode_Click(object sender, EventArgs e)
         {
-            const string stringQrCode = "35190361099008000141599000022490004885145710|20190315181929|2479.35||K+VRwUKRomWZZcJhaeuJMIWxRb5QKP6Sh6BLzHZdmNdhPOvxo5Xx4oIYqkfA5sB6z4KzBepBLgDrYkeOCzjwVGWhvLA5C72eQzk9emvV6EIk6iXa9XU/HesRJAqqiSqjvvOvhR9orD0tTUj3DjwoZpn8vrSSK1v1nHxJZBah7r5e3FG8P93X47QgHJZXGRR7BSNA8CQ4N/hgEMqXbOCn/4zj0E6y5Xg/JcI09xC6vX+5SmILY2e1zEBIirxKsWpZN/DkXt/su79esaQFBJSgfCerok4kLK/vE54CMjJ//U5bhLRm/ocHuEJbg1Rvf36kpwIXEnPV/zG/luJita36qQ==";
+            const string stringQrCode =
+                "35190361099008000141599000022490004885145710|20190315181929|2479.35||K+VRwUKRomWZZcJhaeuJMIWxRb5QKP6Sh6BLzHZdmNdhPOvxo5Xx4oIYqkfA5sB6z4KzBepBLgDrYkeOCzjwVGWhvLA5C72eQzk9emvV6EIk6iXa9XU/HesRJAqqiSqjvvOvhR9orD0tTUj3DjwoZpn8vrSSK1v1nHxJZBah7r5e3FG8P93X47QgHJZXGRR7BSNA8CQ4N/hgEMqXbOCn/4zj0E6y5Xg/JcI09xC6vX+5SmILY2e1zEBIirxKsWpZN/DkXt/su79esaQFBJSgfCerok4kLK/vE54CMjJ//U5bhLRm/ocHuEJbg1Rvf36kpwIXEnPV/zG/luJita36qQ==";
             var printer = ObterPrinter();
             printer.AlignCenter();
             printer.BoldMode("Teste de QRCode");
@@ -153,10 +155,20 @@ namespace Vip.Printer.Demo
             int.TryParse(txtNormal.Text, out var normal);
             int.TryParse(txtCondensado.Text, out var condensado);
             int.TryParse(txtExpandido.Text, out var expandido);
-            return new Printer(txtImpressora.Text, ObterTipo(), normal, condensado, expandido, null, ProtocolType.Network);
+            return new Printer(txtImpressora.Text, ObterTipo(), normal, condensado, expandido, null, ObterProtocolo());
         }
 
         private PrinterType ObterTipo() => cboModelo.Text == "Bematech" ? PrinterType.Bematech : cboModelo.Text == "Daruma" ? PrinterType.Daruma : PrinterType.Epson;
+
+        private ProtocolType ObterProtocolo()
+        {
+            switch (cboProtocolo.Text)
+            {
+                case "Raw":     return ProtocolType.Raw;
+                case "Network": return ProtocolType.Network;
+                default:        return ProtocolType.Raw;
+            }
+        }
 
         #endregion
     }
