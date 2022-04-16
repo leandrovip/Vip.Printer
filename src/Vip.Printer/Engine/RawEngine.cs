@@ -1,12 +1,13 @@
 ﻿using System;
-using System.IO;
 using System.Runtime.InteropServices;
-using System.Text;
+using Vip.Printer.Interfaces.Engine;
 
-namespace Vip.Printer.Helper
+namespace Vip.Printer.Engine
 {
-    internal class RawPrinterHelper
+    internal class RawEngine : IEngine
     {
+        #region Struct
+
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         public class DOCINFOA
         {
@@ -14,6 +15,8 @@ namespace Vip.Printer.Helper
             [MarshalAs(UnmanagedType.LPStr)] public string pOutputFile;
             [MarshalAs(UnmanagedType.LPStr)] public string pDataType;
         }
+
+        #endregion
 
         #region Declaration Dll
 
@@ -29,7 +32,8 @@ namespace Vip.Printer.Helper
         [DllImport("winspool.Drv", EntryPoint = "StartDocPrinterA", SetLastError = true, CharSet = CharSet.Ansi,
             ExactSpelling = true, CallingConvention = CallingConvention.StdCall)]
         public static extern bool StartDocPrinter(IntPtr hPrinter, int level,
-            [In] [MarshalAs(UnmanagedType.LPStruct)] DOCINFOA di);
+            [In] [MarshalAs(UnmanagedType.LPStruct)]
+            DOCINFOA di);
 
         [DllImport("winspool.Drv", EntryPoint = "EndDocPrinter", SetLastError = true, ExactSpelling = true,
             CallingConvention = CallingConvention.StdCall)]
@@ -49,13 +53,9 @@ namespace Vip.Printer.Helper
 
         #endregion
 
-        #region Methods
+        #region Private Methods
 
-        // SendBytesToPrinter()
-        // When the function is given a printer name and an unmanaged array
-        // of bytes, the function sends those bytes to the printer queue.
-        // Returns true on success, false on failure.
-        public static bool SendBytesToPrinter(string szPrinterName, IntPtr pBytes, int dwCount)
+        private bool SendBytesToPrinter(string szPrinterName, IntPtr pBytes, int dwCount)
         {
             int dwError = 0, dwWritten = 0;
             var hPrinter = new IntPtr(0);
@@ -78,10 +78,13 @@ namespace Vip.Printer.Helper
                         bSuccess = WritePrinter(hPrinter, pBytes, dwCount, out dwWritten);
                         EndPagePrinter(hPrinter);
                     }
+
                     EndDocPrinter(hPrinter);
                 }
+
                 ClosePrinter(hPrinter);
             }
+
             // If you did not succeed, GetLastError may give more information
             // about why not.
             if (bSuccess == false)
@@ -90,43 +93,23 @@ namespace Vip.Printer.Helper
             return bSuccess;
         }
 
-        public static bool SendFileToPrinter(string szPrinterName, string szFileName)
-        {
-            // Open the file.
-            var fs = new FileStream(szFileName, FileMode.Open);
-
-            // Create a BinaryReader on the file.
-            var br = new BinaryReader(fs);
-
-            // Dim an array of bytes big enough to hold the file's contents.
-            var bytes = new byte[fs.Length];
-            var bSuccess = false;
-
-            // Your unmanaged pointer.
-            var pUnmanagedBytes = new IntPtr(0);
-            var nLength = Convert.ToInt32(fs.Length);
-
-            // Read the contents of the file into the array.
-            bytes = br.ReadBytes(nLength);
-            // Allocate some unmanaged memory for those bytes.
-            pUnmanagedBytes = Marshal.AllocCoTaskMem(nLength);
-            // Copy the managed byte array into the unmanaged array.
-            Marshal.Copy(bytes, 0, pUnmanagedBytes, nLength);
-            // Send the unmanaged bytes to the printer.
-            bSuccess = SendBytesToPrinter(szPrinterName, pUnmanagedBytes, nLength);
-            // Free the unmanaged memory that you allocated earlier.
-            Marshal.FreeCoTaskMem(pUnmanagedBytes);
-            return bSuccess;
-        }
-
-        public static bool SendBytesToPrinter(string szPrinterName, byte[] data)
+        private bool SendBytesToPrinter(string szPrinterName, byte[] data)
         {
             var pUnmanagedBytes = Marshal.AllocCoTaskMem(data.Length); // Allocate unmanaged memory
-            Marshal.Copy(data, 0, pUnmanagedBytes, data.Length); // copy bytes into unmanaged memory
+            Marshal.Copy(data, 0, pUnmanagedBytes, data.Length);       // copy bytes into unmanaged memory
             var retval = SendBytesToPrinter(szPrinterName, pUnmanagedBytes, data.Length);
             Marshal.FreeCoTaskMem(pUnmanagedBytes); // Free the allocated unmanaged memory
 
             return retval;
+        }
+
+        #endregion
+
+        #region Methods
+
+        public bool Send(string printer, byte[] content)
+        {
+            return SendBytesToPrinter(printer, content);
         }
 
         #endregion
