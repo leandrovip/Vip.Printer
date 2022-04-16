@@ -153,7 +153,7 @@ namespace Vip.Printer.Demo
             int.TryParse(txtNormal.Text, out var normal);
             int.TryParse(txtCondensado.Text, out var condensado);
             int.TryParse(txtExpandido.Text, out var expandido);
-            return new Printer(txtImpressora.Text, ObterTipo(), normal, condensado, expandido);
+            return new Printer(txtImpressora.Text, ObterTipo(), normal, condensado, expandido, null, ProtocolType.Network);
         }
 
         private PrinterType ObterTipo() => cboModelo.Text == "Bematech" ? PrinterType.Bematech : cboModelo.Text == "Daruma" ? PrinterType.Daruma : PrinterType.Epson;

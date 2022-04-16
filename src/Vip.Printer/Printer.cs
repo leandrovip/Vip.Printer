@@ -249,7 +249,7 @@ namespace Vip.Printer
             switch (protocol)
             {
                 case ProtocolType.Raw:     return new RawEngine();
-                case ProtocolType.Network: return null;
+                case ProtocolType.Network: return new NetworkEngine();
                 case ProtocolType.Serial:  return null;
                 default:                   return new RawEngine();
             }
