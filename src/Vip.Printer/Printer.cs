@@ -250,8 +250,7 @@ namespace Vip.Printer
             {
                 case ProtocolType.Raw:     return new RawEngine();
                 case ProtocolType.Network: return new NetworkEngine();
-                case ProtocolType.Serial:  return null;
-                default:                   return new RawEngine();
+                default: return new RawEngine();
             }
         }
 
@@ -293,7 +292,7 @@ namespace Vip.Printer
             CondensedMode(PrinterModeState.On);
             WriteLine("Texto condensado");
             CondensedMode(PrinterModeState.Off);
-            
+
             NewLine();
             WriteLine($"COLUNAS NORMAL - {ColsNomal}");
             WriteLine(new string('-', ColsNomal));
