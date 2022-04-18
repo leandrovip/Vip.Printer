@@ -17,10 +17,6 @@ namespace Vip.Printer.Interfaces.Printer
         void NewLines(int lines);
         void Clear();
 
-        void Append(string value);
-        void Append(byte[] value);
-        void AppendWithoutLf(string value);
-
         #region Commands
 
         void Separator();
@@ -86,7 +82,7 @@ namespace Vip.Printer.Interfaces.Printer
         void Image(Stream stream, bool highDensity);
         void Image(byte[] bytes, bool highDensity);
         void Image(Image image, bool highDensity);
-        
+
         #endregion
 
         #region BarCode
