@@ -203,28 +203,6 @@ namespace Vip.Printer
             _encoding = encoding;
         }
 
-        #region Obsolete Methods
-
-        [Obsolete("This method changed to WriteLine")]
-        public void Append(string value)
-        {
-            WriteLine(value);
-        }
-
-        [Obsolete("This method changed to Write")]
-        public void AppendWithoutLf(string value)
-        {
-            Write(value);
-        }
-
-        [Obsolete("This method changed to Write")]
-        public void Append(byte[] value)
-        {
-            Write(value);
-        }
-
-        #endregion
-
         #endregion
 
         #region Factory Methods
