@@ -6,7 +6,8 @@
 		<Copyright>Copyright © 2019-2022</Copyright>
 		<Authors>Leandro Ferreira</Authors>
 		<Version>1.0.23</Version>
-		<Tags>vip printer</Tags>
+		<Tags>vip printer escpos escbema escdaruma posprinter</Tags>
+		<PackageProjectUrl>https://github.com/leandrovip/Vip.Printer</PackageProjectUrl>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="System.Drawing.Common">

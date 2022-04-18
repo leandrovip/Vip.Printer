@@ -1,0 +1,48 @@
+name: Publish NuGet.org
+
+on:
+  workflow_dispatch:
+    inputs:
+      typeBuild:
+        description: "É beta? (digite -beta)"
+        required: false
+
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  # Stop wasting time caching packages
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  # Disable sending usage data to Microsoft
+  DOTNET_CLI_TELEMETRY_OPTOUT: false
+
+jobs:
+  deploy-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout branch"
+        uses: actions/checkout@main
+
+      - name: "Set Project Version"
+        run: echo ::set-env name=VERSION_PROJECT::2.0.${GITHUB_RUN_NUMBER}
+
+      - name: "Set Package Version"
+        run: echo ::set-env name=VERSION_PACKAGE::${VERSION_PROJECT}${{ github.event.inputs.typeBuild }}
+
+      - name: "Variables Test"
+        run: |
+          echo Version: $VERSION_PROJECT
+          echo Version2: $VERSION_PACKAGE
+
+      - name: "Setup .NET Core"
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "6.0.x"
+
+      - name: Build Project
+        run: dotnet build ./src/Vip.Printer.sln --configuration Release -p:Version=$VERSION_PROJECT
+
+      - name: Create Package
+        run: dotnet pack ./src/Vip.Printer/Vip.Printer.csproj --configuration Release -p:Version=$VERSION_PACKAGE
+
+      - name: Publish Package
+        run: dotnet nuget push ./src/Vip.Printer/bin/Release/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_TOKEN }}
