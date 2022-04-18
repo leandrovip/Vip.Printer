@@ -39,7 +39,7 @@ jobs:
           dotnet-version: "6.0.x"
 
       - name: Build Project
-        run: dotnet build ./src/Vip.Printer.sln --configuration Release -p:Version=$VERSION_PROJECT
+        run: dotnet build ./src/Vip.Printer/Vip.Printer.csproj --configuration Release -p:Version=$VERSION_PROJECT
 
       - name: Create Package
         run: dotnet pack ./src/Vip.Printer/Vip.Printer.csproj --configuration Release -p:Version=$VERSION_PACKAGE
