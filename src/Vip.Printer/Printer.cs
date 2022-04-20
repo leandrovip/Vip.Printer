@@ -31,13 +31,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Vip.Printer.Engine;
 using Vip.Printer.Enums;
 using Vip.Printer.EscBemaCommands;
 using Vip.Printer.EscDarumaCommands;
 using Vip.Printer.EscPosCommands;
 using Vip.Printer.Extensions;
-using Vip.Printer.Helper;
 using Vip.Printer.Interfaces.Command;
+using Vip.Printer.Interfaces.Engine;
 using Vip.Printer.Interfaces.Printer;
 using Image = System.Drawing.Image;
 
@@ -49,9 +50,18 @@ namespace Vip.Printer
 
         private byte[] _buffer;
         private readonly string _printerName;
+        private readonly IEngine _engine;
         private readonly IPrintCommand _command;
         private readonly PrinterType _printerType;
-        private readonly Encoding _encoding;
+        private Encoding _encoding;
+
+        #endregion
+
+        #region Public properties
+
+        public int ColsNomal { get; private set; }
+        public int ColsCondensed { get; private set; }
+        public int ColsExpanded { get; private set; }
 
         #endregion
 
@@ -66,36 +76,15 @@ namespace Vip.Printer
         /// <param name="colsCondensed">Number of columns for condensed mode print</param>
         /// <param name="colsExpanded">Number of columns for expanded mode print</param>
         /// <param name="encoding">Custom encoding</param>
-        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded, Encoding encoding)
+        /// <param name="protocol">Communication procotol</param>
+        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded, Encoding encoding, ProtocolType protocol)
         {
             _printerName = string.IsNullOrEmpty(printerName) ? "temp.prn" : printerName.Trim();
             _printerType = type;
             _encoding = encoding;
-
-            #region Select printer type
-
-            switch (type)
-            {
-                case PrinterType.Epson:
-                    _command = new EscPos();
-                    break;
-                case PrinterType.Bematech:
-                    _command = new EscBema();
-                    break;
-                case PrinterType.Daruma:
-                    _command = new EscDaruma();
-                    break;
-            }
-
-            #endregion
-
-            #region Configure number columns
-
-            ColsNomal = colsNormal <= 0 ? _command.ColsNomal : colsNormal;
-            ColsCondensed = colsCondensed <= 0 ? _command.ColsCondensed : colsCondensed;
-            ColsExpanded = colsExpanded <= 0 ? _command.ColsExpanded : colsExpanded;
-
-            #endregion
+            _command = PrinterCommandFactory(type);
+            _engine = EngineFactory(protocol);
+            ConfigureCols(colsNormal, colsCondensed, colsExpanded);
         }
 
         /// <summary>
@@ -106,7 +95,7 @@ namespace Vip.Printer
         /// <param name="colsNormal">Number of columns for normal mode print</param>
         /// <param name="colsCondensed">Number of columns for condensed mode print</param>
         /// <param name="colsExpanded">Number of columns for expanded mode print</param>
-        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded) : this(printerName, type, colsNormal, colsCondensed, colsExpanded, null) { }
+        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded) : this(printerName, type, colsNormal, colsCondensed, colsExpanded, null, ProtocolType.Raw) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Printer" /> class.
@@ -114,24 +103,26 @@ namespace Vip.Printer
         /// <param name="printerName">Printer name, shared name or port of printer install</param>
         /// <param name="type">Command set of type printer</param>
         /// <param name="encoding">Custom encoding</param>
-        public Printer(string printerName, PrinterType type, Encoding encoding) : this(printerName, type, 0, 0, 0, encoding) { }
+        public Printer(string printerName, PrinterType type, Encoding encoding) : this(printerName, type, 0, 0, 0, encoding, ProtocolType.Raw) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Printer" /> class.
         /// </summary>
         /// <param name="printerName">Printer name, shared name or port of printer install</param>
         /// <param name="type">>Command set of type printer</param>
-        public Printer(string printerName, PrinterType type) : this(printerName, type, 0, 0, 0, null) { }
+        /// <param name="protocol">>Communication protocol</param>
+        public Printer(string printerName, PrinterType type, ProtocolType protocol) : this(printerName, type, 0, 0, 0, null, protocol) { }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Printer" /> class.
+        /// </summary>
+        /// <param name="printerName">Printer name, shared name or port of printer install</param>
+        /// <param name="type">>Command set of type printer</param>
+        public Printer(string printerName, PrinterType type) : this(printerName, type, 0, 0, 0, null, ProtocolType.Raw) { }
 
         #endregion
 
         #region Methods
-
-        public int ColsNomal { get; private set; }
-
-        public int ColsCondensed { get; private set; }
-
-        public int ColsExpanded { get; private set; }
 
         public void PrintDocument(int copies = 1)
         {
@@ -139,7 +130,7 @@ namespace Vip.Printer
             if (copies <= 0) copies = 1;
 
             for (var i = 0; i < copies; i++)
-                if (!RawPrinterHelper.SendBytesToPrinter(_printerName, _buffer))
+                if (!_engine.Send(_printerName, _buffer))
                     throw new ArgumentException("Não foi possível acessar a impressora: " + _printerName);
         }
 
@@ -200,31 +191,52 @@ namespace Vip.Printer
             _buffer = null;
         }
 
-        #region Obsolete Methods
-
-        [Obsolete("This method changed to WriteLine")]
-        public void Append(string value)
+        public void ConfigureCols(int normal, int condensed, int expanded)
         {
-            WriteLine(value);
+            ColsNomal = normal <= 0 ? _command.ColsNomal : normal;
+            ColsCondensed = condensed <= 0 ? _command.ColsCondensed : condensed;
+            ColsExpanded = expanded <= 0 ? _command.ColsExpanded : expanded;
         }
 
-        [Obsolete("This method changed to Write")]
-        public void AppendWithoutLf(string value)
+        public void ConfigureEncoding(Encoding encoding)
         {
-            Write(value);
-        }
-
-        [Obsolete("This method changed to Write")]
-        public void Append(byte[] value)
-        {
-            Write(value);
+            _encoding = encoding;
         }
 
         #endregion
+
+        #region Factory Methods
+
+        private IPrintCommand PrinterCommandFactory(PrinterType type)
+        {
+            switch (type)
+            {
+                case PrinterType.Epson:
+                    return new EscPos();
+                case PrinterType.Bematech:
+                    return new EscBema();
+                case PrinterType.Daruma:
+                    return new EscDaruma();
+                default:
+                    return new EscPos();
+            }
+        }
+
+        private IEngine EngineFactory(ProtocolType protocol)
+        {
+            switch (protocol)
+            {
+                case ProtocolType.Raw:     return new RawEngine();
+                case ProtocolType.Network: return new NetworkEngine();
+                default: return new RawEngine();
+            }
+        }
 
         #endregion
 
         #region Commands
+
+        #region Utils
 
         public void Separator()
         {
@@ -258,18 +270,16 @@ namespace Vip.Printer
             CondensedMode(PrinterModeState.On);
             WriteLine("Texto condensado");
             CondensedMode(PrinterModeState.Off);
-            Separator();
 
             NewLine();
-            WriteLine("COLUNAS");
-            WriteLine($"NORMAL - {ColsNomal}");
+            WriteLine($"COLUNAS NORMAL - {ColsNomal}");
             WriteLine(new string('-', ColsNomal));
-            WriteLine($"CONDENSADO - {ColsCondensed}");
+            WriteLine($"COLUNAS CONDENSADO - {ColsCondensed}");
             CondensedMode(new string('-', ColsCondensed));
-            WriteLine($"EXPANDIDO - {ColsExpanded}");
+            WriteLine($"COLUNAS EXPANDIDO - {ColsExpanded}");
             ExpandedMode(new string('-', ColsExpanded));
 
-            Separator();
+            NewLine();
             DoubleWidth2();
             WriteLine("Largura Fonte 2");
             DoubleWidth3();
@@ -289,6 +299,8 @@ namespace Vip.Printer
             Separator();
             NewLine();
         }
+
+        #endregion
 
         #region FontMode
 
@@ -482,7 +494,7 @@ namespace Vip.Printer
 
         public void InitializePrint()
         {
-            RawPrinterHelper.SendBytesToPrinter(_printerName, _command.InitializePrint.Initialize());
+            _engine.Send(_printerName, _command.InitializePrint.Initialize());
         }
 
         #endregion

@@ -1,16 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0</TargetFrameworks>
 		<Description>Biblioteca para realizar impressões (impressora não fiscal) utilizando comandos Esc/Bema, Esc/Daruma e Esc/Pos</Description>
 		<Company>VIP Soluções</Company>
-		<Copyright>VIP Soluções - Copyright ©  2019</Copyright>
+		<Copyright>Copyright © 2019-2022</Copyright>
 		<Authors>Leandro Ferreira</Authors>
-		<Version>1.0.22</Version>
-		<Tags>vip printer</Tags>
+		<Version>1.0.23</Version>
+		<Tags>vip printer escpos escbema escdaruma posprinter</Tags>
+		<PackageProjectUrl>https://github.com/leandrovip/Vip.Printer</PackageProjectUrl>
 	</PropertyGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-	  <PackageReference Include="System.Drawing.Common">
-	    <Version>4.7.0</Version>
-	  </PackageReference>
+	<ItemGroup>
+		<PackageReference Include="System.Drawing.Common">
+			<Version>6.0.0</Version>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Interfaces\Engine\" />
 	</ItemGroup>
 </Project>
