@@ -19,8 +19,8 @@ Biblioteca para realizar impressões (mini-impressoras / impressora não fiscal)
 
 ## Pré requisitos
 
-- .Net Framework 4.5+
-- .Net Standard 2.0
+- *.Net Standard 2.0*
+- .Net Framework 4.6.1+
 
 ## Instalação via NuGet
 
