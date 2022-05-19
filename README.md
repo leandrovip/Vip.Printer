@@ -19,8 +19,8 @@ Biblioteca para realizar impressões (mini-impressoras / impressora não fiscal)
 
 ## Pré requisitos
 
-- .Net Framework 4.5+
-- .Net Standard 2.0
+- *.Net Standard 2.0*
+- .Net Framework 4.6.1+
 
 ## Instalação via NuGet
 
@@ -94,6 +94,8 @@ printer.PrintDocument();
 
 ## Release Notes
 
+- **16/05/2022 - v2.0.4**
+- Adiciona protocolo de comunicação via REDE (tcp/ip)
 - **05/02/2021 - v1.0.22**
 - Corrige o método NewLine
 - **10/11/2020 - v1.0.21**
