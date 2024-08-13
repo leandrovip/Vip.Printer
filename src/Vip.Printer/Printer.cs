@@ -79,6 +79,8 @@ namespace Vip.Printer
         /// <param name="protocol">Communication procotol</param>
         public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded, Encoding encoding, ProtocolType protocol)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
             _printerName = string.IsNullOrEmpty(printerName) ? "temp.prn" : printerName.Trim();
             _printerType = type;
             _encoding = encoding;
