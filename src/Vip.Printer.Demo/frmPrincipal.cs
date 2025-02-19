@@ -77,6 +77,7 @@ namespace Vip.Printer.Demo
         {
             const string stringQrCode =
                 "35190361099008000141599000022490004885145710|20190315181929|2479.35||K+VRwUKRomWZZcJhaeuJMIWxRb5QKP6Sh6BLzHZdmNdhPOvxo5Xx4oIYqkfA5sB6z4KzBepBLgDrYkeOCzjwVGWhvLA5C72eQzk9emvV6EIk6iXa9XU/HesRJAqqiSqjvvOvhR9orD0tTUj3DjwoZpn8vrSSK1v1nHxJZBah7r5e3FG8P93X47QgHJZXGRR7BSNA8CQ4N/hgEMqXbOCn/4zj0E6y5Xg/JcI09xC6vX+5SmILY2e1zEBIirxKsWpZN/DkXt/su79esaQFBJSgfCerok4kLK/vE54CMjJ//U5bhLRm/ocHuEJbg1Rvf36kpwIXEnPV/zG/luJita36qQ==";
+
             var printer = ObterPrinter();
             printer.AlignCenter();
             printer.BoldMode("Teste de QRCode");
