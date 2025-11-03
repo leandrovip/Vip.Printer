@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.IO.Ports;
+using System.Text;
 using Vip.Printer.Enums;
 using Vip.Printer.Interfaces.Engine;
 
@@ -12,6 +13,7 @@ namespace Vip.Printer
         public PrinterType PrinterType { get; }
         public ProtocolType Protocol { get; }
         public Encoding Encoding { get; }
+        public SerialOptions SerialOptions { get; }
         public IEngine Engine { get; }
         public int ColsNormal { get; }
         public int ColsCondensed { get; }
@@ -21,12 +23,13 @@ namespace Vip.Printer
 
         #region Constructors
 
-        private PrinterSettings(string printerName, PrinterType printerType, ProtocolType protocol, Encoding encoding, IEngine engine, int colsNormal, int colsCondensed, int colsExpanded)
+        private PrinterSettings(string printerName, PrinterType printerType, ProtocolType protocol, Encoding encoding, SerialOptions serialOptions, IEngine engine, int colsNormal, int colsCondensed, int colsExpanded)
         {
             PrinterName = string.IsNullOrWhiteSpace(printerName) ? "temp.prn" : printerName.Trim();
             PrinterType = printerType;
             Protocol = protocol;
             Encoding = encoding;
+            SerialOptions = serialOptions;
             Engine = engine;
             ColsNormal = colsNormal;
             ColsCondensed = colsCondensed;
@@ -62,6 +65,7 @@ namespace Vip.Printer
             private PrinterType _printerType = PrinterType.Epson;
             private ProtocolType _protocol = ProtocolType.Raw;
             private Encoding _encoding;
+            private SerialOptions _serialOptions;
             private IEngine _engine;
             private int _colsNormal;
             private int _colsCondensed;
@@ -73,7 +77,7 @@ namespace Vip.Printer
 
             public PrinterSettings Build()
             {
-                return new PrinterSettings(_printerName, _printerType, _protocol, _encoding, _engine, _colsNormal, _colsCondensed, _colsExpanded);
+                return new PrinterSettings(_printerName, _printerType, _protocol, _encoding, _serialOptions, _engine, _colsNormal, _colsCondensed, _colsExpanded);
             }
 
             #endregion
@@ -101,6 +105,12 @@ namespace Vip.Printer
             public PrinterSettingsBuilder WithEncoding(Encoding encoding)
             {
                 _encoding = encoding;
+                return this;
+            }
+
+            public PrinterSettingsBuilder WithSerialOptions(int baudeRate, int dataBits = 8, Parity parity = Parity.None, StopBits stopBits = StopBits.One, Handshake handshake = Handshake.None)
+            {
+                _serialOptions = new SerialOptions(baudeRate, dataBits, parity, stopBits, handshake);
                 return this;
             }
 

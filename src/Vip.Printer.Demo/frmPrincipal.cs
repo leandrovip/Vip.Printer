@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Ports;
 using System.Windows.Forms;
 using Vip.Printer.Enums;
 
@@ -23,6 +24,9 @@ namespace Vip.Printer.Demo
         {
             cboModelo.SelectedItem = cboModelo.Items[0];
             cboProtocolo.SelectedItem = cboProtocolo.Items[0];
+            cboParity.SelectedItem = cboParity.Items[0];
+            cboStopBits.SelectedItem = cboStopBits.Items[0];
+            cboHandShake.SelectedItem = cboHandShake.Items[0];
         }
 
         private void lblLinkGit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -157,10 +161,14 @@ namespace Vip.Printer.Demo
             int.TryParse(txtCondensado.Text, out var condensado);
             int.TryParse(txtExpandido.Text, out var expandido);
 
+            int.TryParse(txtBaudeRate.Text, out var baudeRate);
+            int.TryParse(txtDataBits.Text, out var dataBits);
+
             var settings = PrinterSettings.Create()
                 .WithPrinterName(txtImpressora.Text)
                 .WithPrinterType(ObterTipo())
                 .WithProtocol(ObterProtocolo())
+                .WithSerialOptions(baudeRate, dataBits, ObterParity(), ObterStopBits(), ObterHandShake())
                 .WithColumns(normal, condensado, expandido)
                 .Build();
 
@@ -175,7 +183,48 @@ namespace Vip.Printer.Demo
             {
                 case "Raw":     return ProtocolType.Raw;
                 case "Network": return ProtocolType.Network;
+                case "Serial":  return ProtocolType.Serial;
                 default:        return ProtocolType.Raw;
+            }
+        }
+
+        private Parity ObterParity()
+        {
+            switch (cboParity.Text)
+            {
+                case "Odd":   return Parity.Odd;
+                case "Even":  return Parity.Even;
+                case "Mark":  return Parity.Mark;
+                case "Space": return Parity.Space;
+                case "None":
+                default:
+                    return Parity.None;
+            }
+        }
+
+        private StopBits ObterStopBits()
+        {
+            switch (cboStopBits.Text)
+            {
+                case "None":         return StopBits.None;
+                case "Two":          return StopBits.Two;
+                case "OnePointFive": return StopBits.OnePointFive;
+                case "One":
+                default:
+                    return StopBits.One;
+            }
+        }
+
+        private Handshake ObterHandShake()
+        {
+            switch (cboHandShake.Text)
+            {
+                case "XOnXOff":              return Handshake.XOnXOff;
+                case "RequestToSend":        return Handshake.RequestToSend;
+                case "RequestToSendXOnXOff": return Handshake.RequestToSendXOnXOff;
+                case "None":
+                default:
+                    return Handshake.None;
             }
         }
 

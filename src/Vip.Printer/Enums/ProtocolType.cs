@@ -4,6 +4,6 @@
     {
         Raw = 0,
         Network = 1,
-        //Serial = 2 - Future
+        Serial = 2
     }
 }
