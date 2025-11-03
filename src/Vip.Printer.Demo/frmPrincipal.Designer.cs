@@ -52,13 +52,25 @@
             this.cboProtocolo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gpbColunas = new System.Windows.Forms.GroupBox();
+            this.gpbSerial = new System.Windows.Forms.GroupBox();
+            this.txtBaudeRate = new System.Windows.Forms.TextBox();
+            this.lblBaudeRate = new System.Windows.Forms.Label();
+            this.txtDataBits = new System.Windows.Forms.TextBox();
+            this.lblDataBits = new System.Windows.Forms.Label();
+            this.cboParity = new System.Windows.Forms.ComboBox();
+            this.lblParity = new System.Windows.Forms.Label();
+            this.cboStopBits = new System.Windows.Forms.ComboBox();
+            this.lblStopBits = new System.Windows.Forms.Label();
+            this.cboHandShake = new System.Windows.Forms.ComboBox();
+            this.lblHandShake = new System.Windows.Forms.Label();
             this.gpbColunas.SuspendLayout();
+            this.gpbSerial.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnImprimirTeste
             // 
             this.btnImprimirTeste.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.btnImprimirTeste.Location = new System.Drawing.Point(12, 159);
+            this.btnImprimirTeste.Location = new System.Drawing.Point(12, 226);
             this.btnImprimirTeste.Name = "btnImprimirTeste";
             this.btnImprimirTeste.Size = new System.Drawing.Size(209, 44);
             this.btnImprimirTeste.TabIndex = 4;
@@ -69,7 +81,7 @@
             // btnGaveta
             // 
             this.btnGaveta.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.btnGaveta.Location = new System.Drawing.Point(245, 209);
+            this.btnGaveta.Location = new System.Drawing.Point(245, 276);
             this.btnGaveta.Name = "btnGaveta";
             this.btnGaveta.Size = new System.Drawing.Size(208, 44);
             this.btnGaveta.TabIndex = 7;
@@ -81,7 +93,7 @@
             // 
             this.btnSair.BackColor = System.Drawing.SystemColors.Control;
             this.btnSair.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold);
-            this.btnSair.Location = new System.Drawing.Point(245, 377);
+            this.btnSair.Location = new System.Drawing.Point(245, 436);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(208, 44);
             this.btnSair.TabIndex = 12;
@@ -92,7 +104,7 @@
             // btnQrCode
             // 
             this.btnQrCode.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.btnQrCode.Location = new System.Drawing.Point(12, 209);
+            this.btnQrCode.Location = new System.Drawing.Point(12, 276);
             this.btnQrCode.Name = "btnQrCode";
             this.btnQrCode.Size = new System.Drawing.Size(209, 44);
             this.btnQrCode.TabIndex = 6;
@@ -103,7 +115,7 @@
             // btnCodigoDeBarras
             // 
             this.btnCodigoDeBarras.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.btnCodigoDeBarras.Location = new System.Drawing.Point(245, 259);
+            this.btnCodigoDeBarras.Location = new System.Drawing.Point(245, 326);
             this.btnCodigoDeBarras.Name = "btnCodigoDeBarras";
             this.btnCodigoDeBarras.Size = new System.Drawing.Size(208, 44);
             this.btnCodigoDeBarras.TabIndex = 9;
@@ -114,7 +126,7 @@
             // btnCodigoEan13
             // 
             this.btnCodigoEan13.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.btnCodigoEan13.Location = new System.Drawing.Point(12, 259);
+            this.btnCodigoEan13.Location = new System.Drawing.Point(12, 326);
             this.btnCodigoEan13.Name = "btnCodigoEan13";
             this.btnCodigoEan13.Size = new System.Drawing.Size(209, 44);
             this.btnCodigoEan13.TabIndex = 8;
@@ -125,7 +137,7 @@
             // btnInicializar
             // 
             this.btnInicializar.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.btnInicializar.Location = new System.Drawing.Point(245, 309);
+            this.btnInicializar.Location = new System.Drawing.Point(245, 376);
             this.btnInicializar.Name = "btnInicializar";
             this.btnInicializar.Size = new System.Drawing.Size(208, 44);
             this.btnInicializar.TabIndex = 11;
@@ -177,7 +189,7 @@
             // btnAutoTeste
             // 
             this.btnAutoTeste.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.btnAutoTeste.Location = new System.Drawing.Point(12, 309);
+            this.btnAutoTeste.Location = new System.Drawing.Point(12, 376);
             this.btnAutoTeste.Name = "btnAutoTeste";
             this.btnAutoTeste.Size = new System.Drawing.Size(209, 44);
             this.btnAutoTeste.TabIndex = 10;
@@ -189,7 +201,7 @@
             // 
             this.lblDireitos.AutoSize = true;
             this.lblDireitos.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDireitos.Location = new System.Drawing.Point(9, 385);
+            this.lblDireitos.Location = new System.Drawing.Point(9, 444);
             this.lblDireitos.Name = "lblDireitos";
             this.lblDireitos.Size = new System.Drawing.Size(165, 15);
             this.lblDireitos.TabIndex = 16;
@@ -198,7 +210,7 @@
             // lblLinkGit
             // 
             this.lblLinkGit.AutoSize = true;
-            this.lblLinkGit.Location = new System.Drawing.Point(9, 406);
+            this.lblLinkGit.Location = new System.Drawing.Point(9, 465);
             this.lblLinkGit.Name = "lblLinkGit";
             this.lblLinkGit.Size = new System.Drawing.Size(130, 15);
             this.lblLinkGit.TabIndex = 17;
@@ -209,7 +221,7 @@
             // btnImagem
             // 
             this.btnImagem.Font = new System.Drawing.Font("Verdana", 8.25F);
-            this.btnImagem.Location = new System.Drawing.Point(245, 159);
+            this.btnImagem.Location = new System.Drawing.Point(245, 226);
             this.btnImagem.Name = "btnImagem";
             this.btnImagem.Size = new System.Drawing.Size(208, 44);
             this.btnImagem.TabIndex = 5;
@@ -261,7 +273,7 @@
             this.lblExpandido.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpandido.Location = new System.Drawing.Point(301, 22);
             this.lblExpandido.Name = "lblExpandido";
-            this.lblExpandido.Size = new System.Drawing.Size(63, 15);
+            this.lblExpandido.Size = new System.Drawing.Size(62, 15);
             this.lblExpandido.TabIndex = 4;
             this.lblExpandido.Text = "Expandido";
             // 
@@ -281,7 +293,8 @@
             this.cboProtocolo.FormattingEnabled = true;
             this.cboProtocolo.Items.AddRange(new object[] {
             "Raw",
-            "Network"});
+            "Network",
+            "Serial"});
             this.cboProtocolo.Location = new System.Drawing.Point(359, 33);
             this.cboProtocolo.Name = "cboProtocolo";
             this.cboProtocolo.Size = new System.Drawing.Size(94, 24);
@@ -312,10 +325,147 @@
             this.gpbColunas.TabStop = false;
             this.gpbColunas.Text = "Configuração de Colunas (Quantidade)";
             // 
+            // gpbSerial
+            // 
+            this.gpbSerial.Controls.Add(this.cboHandShake);
+            this.gpbSerial.Controls.Add(this.lblHandShake);
+            this.gpbSerial.Controls.Add(this.cboStopBits);
+            this.gpbSerial.Controls.Add(this.lblStopBits);
+            this.gpbSerial.Controls.Add(this.cboParity);
+            this.gpbSerial.Controls.Add(this.lblParity);
+            this.gpbSerial.Controls.Add(this.txtBaudeRate);
+            this.gpbSerial.Controls.Add(this.lblBaudeRate);
+            this.gpbSerial.Controls.Add(this.txtDataBits);
+            this.gpbSerial.Controls.Add(this.lblDataBits);
+            this.gpbSerial.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gpbSerial.Location = new System.Drawing.Point(12, 149);
+            this.gpbSerial.Name = "gpbSerial";
+            this.gpbSerial.Size = new System.Drawing.Size(441, 71);
+            this.gpbSerial.TabIndex = 18;
+            this.gpbSerial.TabStop = false;
+            this.gpbSerial.Text = "Configurações Serial";
+            // 
+            // txtBaudeRate
+            // 
+            this.txtBaudeRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBaudeRate.Location = new System.Drawing.Point(10, 40);
+            this.txtBaudeRate.Name = "txtBaudeRate";
+            this.txtBaudeRate.Size = new System.Drawing.Size(66, 23);
+            this.txtBaudeRate.TabIndex = 1;
+            this.txtBaudeRate.Text = "9600";
+            this.txtBaudeRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblBaudeRate
+            // 
+            this.lblBaudeRate.AutoSize = true;
+            this.lblBaudeRate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBaudeRate.Location = new System.Drawing.Point(7, 22);
+            this.lblBaudeRate.Name = "lblBaudeRate";
+            this.lblBaudeRate.Size = new System.Drawing.Size(66, 15);
+            this.lblBaudeRate.TabIndex = 0;
+            this.lblBaudeRate.Text = "Baude Rate";
+            // 
+            // txtDataBits
+            // 
+            this.txtDataBits.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataBits.Location = new System.Drawing.Point(82, 40);
+            this.txtDataBits.Name = "txtDataBits";
+            this.txtDataBits.Size = new System.Drawing.Size(47, 23);
+            this.txtDataBits.TabIndex = 3;
+            this.txtDataBits.Text = "8";
+            this.txtDataBits.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblDataBits
+            // 
+            this.lblDataBits.AutoSize = true;
+            this.lblDataBits.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataBits.Location = new System.Drawing.Point(79, 22);
+            this.lblDataBits.Name = "lblDataBits";
+            this.lblDataBits.Size = new System.Drawing.Size(50, 15);
+            this.lblDataBits.TabIndex = 2;
+            this.lblDataBits.Text = "DataBits";
+            // 
+            // cboParity
+            // 
+            this.cboParity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboParity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboParity.FormattingEnabled = true;
+            this.cboParity.Items.AddRange(new object[] {
+            "None",
+            "Odd",
+            "Even",
+            "Mark",
+            "Space"});
+            this.cboParity.Location = new System.Drawing.Point(135, 39);
+            this.cboParity.Name = "cboParity";
+            this.cboParity.Size = new System.Drawing.Size(74, 24);
+            this.cboParity.TabIndex = 15;
+            // 
+            // lblParity
+            // 
+            this.lblParity.AutoSize = true;
+            this.lblParity.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblParity.Location = new System.Drawing.Point(132, 22);
+            this.lblParity.Name = "lblParity";
+            this.lblParity.Size = new System.Drawing.Size(37, 15);
+            this.lblParity.TabIndex = 16;
+            this.lblParity.Text = "Parity";
+            // 
+            // cboStopBits
+            // 
+            this.cboStopBits.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStopBits.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboStopBits.FormattingEnabled = true;
+            this.cboStopBits.Items.AddRange(new object[] {
+            "One",
+            "Two",
+            "OnePointFive",
+            "None"});
+            this.cboStopBits.Location = new System.Drawing.Point(215, 39);
+            this.cboStopBits.Name = "cboStopBits";
+            this.cboStopBits.Size = new System.Drawing.Size(83, 24);
+            this.cboStopBits.TabIndex = 17;
+            // 
+            // lblStopBits
+            // 
+            this.lblStopBits.AutoSize = true;
+            this.lblStopBits.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStopBits.Location = new System.Drawing.Point(212, 22);
+            this.lblStopBits.Name = "lblStopBits";
+            this.lblStopBits.Size = new System.Drawing.Size(50, 15);
+            this.lblStopBits.TabIndex = 18;
+            this.lblStopBits.Text = "StopBits";
+            // 
+            // cboHandShake
+            // 
+            this.cboHandShake.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHandShake.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboHandShake.FormattingEnabled = true;
+            this.cboHandShake.Items.AddRange(new object[] {
+            "None",
+            "XOnXOff",
+            "RequestToSend",
+            "RequestToSendXOnXOff"});
+            this.cboHandShake.Location = new System.Drawing.Point(304, 39);
+            this.cboHandShake.Name = "cboHandShake";
+            this.cboHandShake.Size = new System.Drawing.Size(131, 24);
+            this.cboHandShake.TabIndex = 19;
+            // 
+            // lblHandShake
+            // 
+            this.lblHandShake.AutoSize = true;
+            this.lblHandShake.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHandShake.Location = new System.Drawing.Point(301, 22);
+            this.lblHandShake.Name = "lblHandShake";
+            this.lblHandShake.Size = new System.Drawing.Size(67, 15);
+            this.lblHandShake.TabIndex = 20;
+            this.lblHandShake.Text = "HandShake";
+            // 
             // frmPrincipal
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(465, 435);
+            this.ClientSize = new System.Drawing.Size(465, 491);
+            this.Controls.Add(this.gpbSerial);
             this.Controls.Add(this.gpbColunas);
             this.Controls.Add(this.cboProtocolo);
             this.Controls.Add(this.label1);
@@ -344,6 +494,8 @@
             this.Load += new System.EventHandler(this.frmPrincipal_Load);
             this.gpbColunas.ResumeLayout(false);
             this.gpbColunas.PerformLayout();
+            this.gpbSerial.ResumeLayout(false);
+            this.gpbSerial.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -375,5 +527,16 @@
         private System.Windows.Forms.ComboBox cboProtocolo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gpbColunas;
+        private System.Windows.Forms.GroupBox gpbSerial;
+        private System.Windows.Forms.TextBox txtBaudeRate;
+        private System.Windows.Forms.Label lblBaudeRate;
+        private System.Windows.Forms.TextBox txtDataBits;
+        private System.Windows.Forms.Label lblDataBits;
+        private System.Windows.Forms.ComboBox cboParity;
+        private System.Windows.Forms.Label lblParity;
+        private System.Windows.Forms.ComboBox cboStopBits;
+        private System.Windows.Forms.Label lblStopBits;
+        private System.Windows.Forms.ComboBox cboHandShake;
+        private System.Windows.Forms.Label lblHandShake;
     }
 }

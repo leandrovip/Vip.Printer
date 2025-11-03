@@ -67,7 +67,7 @@ namespace Vip.Printer
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Printer" /> class.
+        ///     Initializes a new instance of the <see cref="Printer" /> class.
         /// </summary>
         /// <param name="settings"></param>
         /// <exception cref="ArgumentNullException"></exception>
@@ -151,6 +151,7 @@ namespace Vip.Printer
             {
                 case ProtocolType.Raw:     return new RawEngine();
                 case ProtocolType.Network: return new NetworkEngine();
+                case ProtocolType.Serial:  return new SerialEngine(_settings);
                 default:                   return new RawEngine();
             }
         }
