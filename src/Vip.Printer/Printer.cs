@@ -49,11 +49,10 @@ namespace Vip.Printer
         #region Properties
 
         private byte[] _buffer;
-        private readonly string _printerName;
+        private Encoding _encoding;
         private readonly IEngine _engine;
         private readonly IPrintCommand _command;
-        private readonly PrinterType _printerType;
-        private Encoding _encoding;
+        private readonly PrinterSettings _settings;
 
         #endregion
 
@@ -68,23 +67,18 @@ namespace Vip.Printer
         #region Constructors
 
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Printer" /> class.
+        /// Initializes a new instance of the <see cref="Printer" /> class.
         /// </summary>
-        /// <param name="printerName">Printer name, shared name or port of printer install</param>
-        /// <param name="type">Command set of type printer</param>
-        /// <param name="colsNormal">Number of columns for normal mode print</param>
-        /// <param name="colsCondensed">Number of columns for condensed mode print</param>
-        /// <param name="colsExpanded">Number of columns for expanded mode print</param>
-        /// <param name="encoding">Custom encoding</param>
-        /// <param name="protocol">Communication procotol</param>
-        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded, Encoding encoding, ProtocolType protocol)
+        /// <param name="settings"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public Printer(PrinterSettings settings)
         {
-            _printerName = string.IsNullOrEmpty(printerName) ? "temp.prn" : printerName.Trim();
-            _printerType = type;
-            _encoding = encoding;
-            _command = PrinterCommandFactory(type);
-            _engine = EngineFactory(protocol);
-            ConfigureCols(colsNormal, colsCondensed, colsExpanded);
+            _settings = settings ?? throw new ArgumentNullException(nameof(settings));
+            _engine = _settings.Engine ?? EngineFactory(_settings.Protocol);
+            _command = PrinterCommandFactory(_settings.PrinterType);
+
+            ConfigureEncoding(_settings.Encoding);
+            ConfigureCols(_settings.ColsNormal, _settings.ColsCondensed, _settings.ColsExpanded);
         }
 
         /// <summary>
@@ -95,7 +89,19 @@ namespace Vip.Printer
         /// <param name="colsNormal">Number of columns for normal mode print</param>
         /// <param name="colsCondensed">Number of columns for condensed mode print</param>
         /// <param name="colsExpanded">Number of columns for expanded mode print</param>
-        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded) : this(printerName, type, colsNormal, colsCondensed, colsExpanded, null, ProtocolType.Raw) { }
+        /// <param name="encoding">Custom encoding</param>
+        /// <param name="protocol">Communication procotol</param>
+        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded, Encoding encoding, ProtocolType protocol) : this(PrinterSettings.FromLegacy(printerName, type, colsNormal, colsCondensed, colsExpanded, encoding, protocol)) { }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Printer" /> class.
+        /// </summary>
+        /// <param name="printerName">Printer name, shared name or port of printer install</param>
+        /// <param name="type">Command set of type printer</param>
+        /// <param name="colsNormal">Number of columns for normal mode print</param>
+        /// <param name="colsCondensed">Number of columns for condensed mode print</param>
+        /// <param name="colsExpanded">Number of columns for expanded mode print</param>
+        public Printer(string printerName, PrinterType type, int colsNormal, int colsCondensed, int colsExpanded) : this(PrinterSettings.FromLegacy(printerName, type, colsNormal, colsCondensed, colsExpanded, null, ProtocolType.Raw)) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Printer" /> class.
@@ -103,7 +109,7 @@ namespace Vip.Printer
         /// <param name="printerName">Printer name, shared name or port of printer install</param>
         /// <param name="type">Command set of type printer</param>
         /// <param name="encoding">Custom encoding</param>
-        public Printer(string printerName, PrinterType type, Encoding encoding) : this(printerName, type, 0, 0, 0, encoding, ProtocolType.Raw) { }
+        public Printer(string printerName, PrinterType type, Encoding encoding) : this(PrinterSettings.FromLegacy(printerName, type, 0, 0, 0, encoding, ProtocolType.Raw)) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Printer" /> class.
@@ -111,14 +117,43 @@ namespace Vip.Printer
         /// <param name="printerName">Printer name, shared name or port of printer install</param>
         /// <param name="type">>Command set of type printer</param>
         /// <param name="protocol">>Communication protocol</param>
-        public Printer(string printerName, PrinterType type, ProtocolType protocol) : this(printerName, type, 0, 0, 0, null, protocol) { }
+        public Printer(string printerName, PrinterType type, ProtocolType protocol) : this(PrinterSettings.FromLegacy(printerName, type, 0, 0, 0, null, protocol)) { }
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Printer" /> class.
         /// </summary>
         /// <param name="printerName">Printer name, shared name or port of printer install</param>
         /// <param name="type">>Command set of type printer</param>
-        public Printer(string printerName, PrinterType type) : this(printerName, type, 0, 0, 0, null, ProtocolType.Raw) { }
+        public Printer(string printerName, PrinterType type) : this(PrinterSettings.FromLegacy(printerName, type, 0, 0, 0, null, ProtocolType.Raw)) { }
+
+        #endregion
+
+        #region Factory Methods
+
+        private IPrintCommand PrinterCommandFactory(PrinterType type)
+        {
+            switch (type)
+            {
+                case PrinterType.Epson:
+                    return new EscPos();
+                case PrinterType.Bematech:
+                    return new EscBema();
+                case PrinterType.Daruma:
+                    return new EscDaruma();
+                default:
+                    return new EscPos();
+            }
+        }
+
+        private IEngine EngineFactory(ProtocolType protocol)
+        {
+            switch (protocol)
+            {
+                case ProtocolType.Raw:     return new RawEngine();
+                case ProtocolType.Network: return new NetworkEngine();
+                default:                   return new RawEngine();
+            }
+        }
 
         #endregion
 
@@ -130,8 +165,8 @@ namespace Vip.Printer
             if (copies <= 0) copies = 1;
 
             for (var i = 0; i < copies; i++)
-                if (!_engine.Send(_printerName, _buffer))
-                    throw new ArgumentException("Não foi possível acessar a impressora: " + _printerName);
+                if (!_engine.Send(_settings.PrinterName, _buffer))
+                    throw new ArgumentException("Não foi possível acessar a impressora: " + _settings.PrinterName);
         }
 
         public void Write(string value)
@@ -165,11 +200,7 @@ namespace Vip.Printer
             var list = new List<byte>();
             if (_buffer != null) list.AddRange(_buffer);
 
-            var bytes = _encoding != null
-                ? _encoding.GetBytes(value)
-                : _printerType == PrinterType.Bematech
-                    ? Encoding.GetEncoding(850).GetBytes(value)
-                    : Encoding.GetEncoding("IBM860").GetBytes(value);
+            var bytes = _encoding.GetBytes(value);
 
             list.AddRange(bytes);
             _buffer = list.ToArray();
@@ -200,36 +231,9 @@ namespace Vip.Printer
 
         public void ConfigureEncoding(Encoding encoding)
         {
-            _encoding = encoding;
-        }
-
-        #endregion
-
-        #region Factory Methods
-
-        private IPrintCommand PrinterCommandFactory(PrinterType type)
-        {
-            switch (type)
-            {
-                case PrinterType.Epson:
-                    return new EscPos();
-                case PrinterType.Bematech:
-                    return new EscBema();
-                case PrinterType.Daruma:
-                    return new EscDaruma();
-                default:
-                    return new EscPos();
-            }
-        }
-
-        private IEngine EngineFactory(ProtocolType protocol)
-        {
-            switch (protocol)
-            {
-                case ProtocolType.Raw:     return new RawEngine();
-                case ProtocolType.Network: return new NetworkEngine();
-                default: return new RawEngine();
-            }
+            _encoding = encoding ?? (_settings.PrinterType == PrinterType.Bematech
+                ? Encoding.GetEncoding(850)
+                : Encoding.GetEncoding("IBM860"));
         }
 
         #endregion
@@ -494,7 +498,7 @@ namespace Vip.Printer
 
         public void InitializePrint()
         {
-            _engine.Send(_printerName, _command.InitializePrint.Initialize());
+            _engine.Send(_settings.PrinterName, _command.InitializePrint.Initialize());
         }
 
         #endregion
