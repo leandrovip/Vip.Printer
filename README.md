@@ -343,7 +343,7 @@ printer.PrintDocument();
 
 ## Release Notes
 
-**04/11/2025 - v2.0.10**
+**04/11/2025 - v2.0.11**
 - Adiciona novo padrão de configuração da biblioteca com novo construtor
 - Adiciona protocolo de comunicação via porta SERIAL
 - Adiciona possibilidade de adicionar engine customizada implementando a interface `IEngine`
